@@ -4,7 +4,7 @@
   "main": "src/shared/server.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn --poll --exit-child ."
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn --poll ."
   },
   "dependencies": {
     "@babel/core": "^7.18.9",

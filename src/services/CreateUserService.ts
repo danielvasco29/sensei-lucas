@@ -13,6 +13,7 @@ class CreateUserService {
     const usersRepository = new UsersRepository();
 
     const userConflict = await usersRepository.findByEmail({ email });
+
     if (userConflict) {
       throw new Error('User already exists!');
     }
@@ -21,7 +22,15 @@ class CreateUserService {
     // eslint-disable-next-line no-param-reassign
     userData.password = newPass;
 
+    if (userData?.birthDate) {
+      // eslint-disable-next-line no-param-reassign
+      userData.birthDate = new Date(
+        userData.birthDate
+      ).toISOString() as unknown as Date;
+    }
+
     const newUser = await usersRepository.create({ userData });
+
     if (!newUser) {
       throw new Error('User creation failed, contact suport for more details');
     }
