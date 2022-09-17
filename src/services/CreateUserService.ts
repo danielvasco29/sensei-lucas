@@ -15,16 +15,18 @@ class CreateUserService {
 
     const userConflict = await usersRepository.findByEmail({ email });
 
+    /* const numberExists = await usersRepository.findByNumber({ cellNumber }); */
+
     if (userConflict) {
       throw new AppError('User already exists!');
-    }
+    } /* else if (numberExists) {
+      throw new AppError('Number already exists!');
+    } */
 
     const newPass = await hash(password, 10);
-    // eslint-disable-next-line no-param-reassign
     userData.password = newPass;
 
     if (userData?.birthDate) {
-      // eslint-disable-next-line no-param-reassign
       userData.birthDate = new Date(
         userData.birthDate
       ).toISOString() as unknown as Date;

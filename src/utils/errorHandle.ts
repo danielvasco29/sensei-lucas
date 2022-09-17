@@ -4,9 +4,8 @@ import { AppError } from '../errors/AppError';
 
 export function errorHandle(
   err: Error,
-  req: Request,
+  _req: Request,
   res: Response,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _next: NextFunction
 ) {
   if (err instanceof AppError) {
