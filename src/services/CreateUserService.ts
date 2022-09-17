@@ -1,12 +1,9 @@
 import { hash } from 'bcrypt';
 
+import { CreateUserDTO } from '../database/dtos/dtos';
 import { UserEntity } from '../database/entities/UserEntity';
 import { UsersRepository } from '../database/repositories/UsersRepository';
 import { AppError } from '../errors/AppError';
-
-type CreateUserDTO = {
-  userData: UserEntity;
-};
 
 class CreateUserService {
   async execute({ userData }: CreateUserDTO): Promise<UserEntity> {
@@ -18,7 +15,7 @@ class CreateUserService {
     /* const numberExists = await usersRepository.findByNumber({ cellNumber }); */
 
     if (userConflict) {
-      throw new AppError('User already exists!');
+      throw new AppError('User already exists!', 409);
     } /* else if (numberExists) {
       throw new AppError('Number already exists!');
     } */
@@ -36,7 +33,8 @@ class CreateUserService {
 
     if (!newUser) {
       throw new AppError(
-        'User creation failed, contact suport for more details'
+        'User creation failed, contact suport for more details',
+        500
       );
     }
 

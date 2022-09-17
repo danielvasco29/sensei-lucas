@@ -1,17 +1,12 @@
 import { prisma } from '../../../prisma/PrismaClient';
+import {
+  CreateUserDTO,
+  FindByEmailDTO,
+  FindByIdDTO,
+  FindByNumberDTO,
+  updateUserDTO,
+} from '../dtos/dtos';
 import { UserEntity } from '../entities/UserEntity';
-
-type CreateUserDTO = {
-  userData: UserEntity;
-};
-
-type FindByEmailDTO = {
-  email: string;
-};
-
-type FindByNumberDTO = {
-  cellNumber: string;
-};
 
 class UsersRepository {
   async create({ userData }: CreateUserDTO) {
@@ -40,6 +35,25 @@ class UsersRepository {
       },
     });
     return userFound;
+  }
+
+  async findByID({ id }: FindByIdDTO): Promise<UserEntity> {
+    const userFound = await prisma.user.findFirst({
+      where: {
+        id,
+      },
+    });
+    return userFound;
+  }
+
+  async updateUser({ id, userData }: updateUserDTO): Promise<UserEntity> {
+    const updateUser = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: userData,
+    });
+    return updateUser;
   }
 }
 export { UsersRepository };
