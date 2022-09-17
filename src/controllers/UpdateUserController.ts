@@ -3,13 +3,13 @@ import { Request, Response } from 'express';
 import { UpdateUserUseService } from '../services/UpdateUserUseService';
 
 class UpdateUserController {
-  constructor(private updateUserUseService: UpdateUserUseService) {}
-
   async control(req: Request, res: Response): Promise<Response> {
-    const { id } = req.body;
+    const { id } = req.user;
     const userData = req.body;
 
-    const updateUser = await this.updateUserUseService.execute({
+    const updateUserUseService = new UpdateUserUseService();
+
+    const updateUser = await updateUserUseService.execute({
       id,
       userData,
     });

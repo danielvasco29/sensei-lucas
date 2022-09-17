@@ -4,7 +4,7 @@ import {
   FindByEmailDTO,
   FindByIdDTO,
   FindByNumberDTO,
-  updateUserDTO,
+  UpdateUserDTO,
 } from '../dtos/dtos';
 import { UserEntity } from '../entities/UserEntity';
 
@@ -28,15 +28,6 @@ class UsersRepository {
     return userFound;
   }
 
-  async findByNumber({ cellNumber }: FindByNumberDTO): Promise<UserEntity> {
-    const userFound = await prisma.user.findFirst({
-      where: {
-        cellNumber,
-      },
-    });
-    return userFound;
-  }
-
   async findByID({ id }: FindByIdDTO): Promise<UserEntity> {
     const userFound = await prisma.user.findFirst({
       where: {
@@ -46,7 +37,7 @@ class UsersRepository {
     return userFound;
   }
 
-  async updateUser({ id, userData }: updateUserDTO): Promise<UserEntity> {
+  async updateUser({ id, userData }: UpdateUserDTO): Promise<UserEntity> {
     const updateUser = await prisma.user.update({
       where: {
         id,

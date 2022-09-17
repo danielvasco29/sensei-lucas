@@ -4,7 +4,7 @@ type CreateUserDTO = {
   userData: UserEntity;
 };
 
-type updateUserDTO = {
+type UpdateUserDTO = {
   id: string;
   userData: Partial<UserEntity>;
 };
@@ -21,10 +21,21 @@ type FindByIdDTO = {
   id: string;
 };
 
+type UserLoginDTO = {
+  email: string;
+  password: string;
+};
+
+type NewTokenDTO = {
+  newToken: string;
+};
+
 export {
-  updateUserDTO,
+  UpdateUserDTO,
   FindByNumberDTO,
   FindByIdDTO,
   FindByEmailDTO,
   CreateUserDTO,
+  UserLoginDTO,
+  NewTokenDTO,
 };

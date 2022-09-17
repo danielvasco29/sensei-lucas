@@ -1,14 +1,11 @@
-import { NextFunction, request } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
 import { AppError } from '../../errors/AppError';
+import auth from '../../settings/auth';
 
-export async function authSecurity(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  const authHeader = request.headers.authorization;
+export function authSecurity(req: Request, res: Response, next: NextFunction) {
+  const authHeader = req.headers.authorization;
   if (!authHeader) {
     throw new AppError('Token not found!', 401);
   }
@@ -16,9 +13,9 @@ export async function authSecurity(
   const [, token] = authHeader.split(' ');
 
   try {
-    const { sub: id } = verify(token, secret) as { sub: string };
+    const { sub: id } = verify(token, auth.secret) as { sub: string };
 
-    request.user = {
+    req.user = {
       id,
     };
 

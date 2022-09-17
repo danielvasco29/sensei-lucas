@@ -1,12 +1,14 @@
 import { Request, Response } from 'express';
 
+import { UserLoginService } from '../services/UserLoginService';
+
 class UserLoginController {
   async control(req: Request, res: Response): Promise<Response> {
     const { email, password } = req.body;
 
-    const userLoginUseService = new UserLoginUseService();
+    const userLoginService = new UserLoginService();
 
-    const newToken = await this.userLoginUseService.execute({
+    const newToken = await userLoginService.execute({
       email,
       password,
     });
