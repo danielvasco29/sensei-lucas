@@ -3,7 +3,6 @@ import {
   CreateUserDTO,
   FindByEmailDTO,
   FindByIdDTO,
-  FindByNumberDTO,
   UpdateUserDTO,
 } from '../dtos/dtos';
 import { UserEntity } from '../entities/UserEntity';
@@ -37,14 +36,15 @@ class UsersRepository {
     return userFound;
   }
 
-  async updateUser({ id, userData }: UpdateUserDTO): Promise<UserEntity> {
-    const updateUser = await prisma.user.update({
+  async update({ id, userData }: UpdateUserDTO): Promise<UserEntity> {
+    const updatedUser = await prisma.user.update({
       where: {
         id,
       },
       data: userData,
     });
-    return updateUser;
+
+    return updatedUser;
   }
 }
 export { UsersRepository };

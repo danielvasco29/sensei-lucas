@@ -23,7 +23,7 @@ class UserLoginService {
     }
 
     const newToken = sign({ email }, secret, {
-      subject: 'userAlreadyExists',
+      subject: userAlreadyExists.id,
       expiresIn: '1d',
     });
     if (!newToken) {

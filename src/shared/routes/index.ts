@@ -14,6 +14,11 @@ const updateUserController = new UpdateUserController();
 
 router.post('/users/create', errorHandle, createUserController.control);
 router.post('/users/login', errorHandle, userLoginController.control);
-router.put('/users/update', authSecurity, updateUserController.control);
+router.put(
+  '/users/update',
+  authSecurity,
+  errorHandle,
+  updateUserController.control
+);
 
 export { router };

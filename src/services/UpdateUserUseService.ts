@@ -12,7 +12,7 @@ class UpdateUserUseService {
       throw new AppError('User not exists', 404);
     }
 
-    const updatedUser = await usersRepository.updateUser({
+    const updatedUser = await usersRepository.update({
       id,
       userData,
     });
