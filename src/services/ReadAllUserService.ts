@@ -4,7 +4,7 @@ import { UsersRepository } from '../database/repositories/UsersRepository';
 import { AppError } from '../errors/AppError';
 
 class ReadAllUserService {
-  async execute({ userId }: ReadAllUserDTO): Promise<UserEntity[]> {
+  async execute({ userId }: ReadAllUserDTO): Promise<Partial<UserEntity>[]> {
     const usersRepository = new UsersRepository();
 
     const { isAdmin } = await usersRepository.findByID({ id: userId });
