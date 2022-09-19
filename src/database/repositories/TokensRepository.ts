@@ -14,8 +14,8 @@ class TokensRepository {
     });
   }
 
-  delete({ userId }: DeleteTokenDTO) {
-    prisma.tokens.delete({
+  async delete({ userId }: DeleteTokenDTO) {
+    await prisma.tokens.delete({
       where: {
         userId,
       },

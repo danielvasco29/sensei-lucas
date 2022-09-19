@@ -37,7 +37,7 @@ class UserLoginService {
       userId: userAlreadyExists.id,
     });
     if (!tokenConflict) {
-      await tokensRepository.delete({ userId: userAlreadyExists.id });
+      tokensRepository.delete({ userId: userAlreadyExists.id });
     }
 
     await tokensRepository.create({

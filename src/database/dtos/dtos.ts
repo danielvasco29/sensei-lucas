@@ -1,6 +1,10 @@
 import { TokenEntity } from '../entities/TokenEntity';
 import { UserEntity } from '../entities/UserEntity';
 
+type UserLogoutDTO = {
+  userId: string;
+};
+
 type CreateUserDTO = {
   userData: UserEntity;
 };
@@ -52,6 +56,7 @@ type DeleteTokenDTO = {
 };
 
 export {
+  UserLogoutDTO,
   FindByUserIdDTO,
   DeleteTokenDTO,
   UpdateUserDTO,
