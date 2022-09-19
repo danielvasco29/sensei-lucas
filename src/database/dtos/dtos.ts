@@ -1,7 +1,12 @@
+import { TokenEntity } from '../entities/TokenEntity';
 import { UserEntity } from '../entities/UserEntity';
 
 type CreateUserDTO = {
   userData: UserEntity;
+};
+
+type CreateTokenDTO = {
+  tokenData: Partial<TokenEntity>;
 };
 
 type UpdateUserDTO = {
@@ -38,7 +43,17 @@ type ReadUserDTO = {
   id: string;
 };
 
+type FindByUserIdDTO = {
+  userId: string;
+};
+
+type DeleteTokenDTO = {
+  userId: string;
+};
+
 export {
+  FindByUserIdDTO,
+  DeleteTokenDTO,
   UpdateUserDTO,
   FindByNumberDTO,
   FindByIdDTO,
@@ -48,4 +63,5 @@ export {
   NewTokenDTO,
   DeleteUserDTO,
   ReadUserDTO,
+  CreateTokenDTO,
 };
