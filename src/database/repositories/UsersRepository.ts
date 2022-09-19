@@ -1,6 +1,7 @@
 import { prisma } from '../../../prisma/PrismaClient';
 import {
   CreateUserDTO,
+  DeleteUserDTO,
   FindByEmailDTO,
   FindByIdDTO,
   UpdateUserDTO,
@@ -45,6 +46,14 @@ class UsersRepository {
     });
 
     return updatedUser;
+  }
+
+  async delete({ id }: DeleteUserDTO) {
+    const deleteUser = await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
   }
 }
 export { UsersRepository };

@@ -30,6 +30,10 @@ type NewTokenDTO = {
   newToken: string;
 };
 
+type DeleteUserDTO = {
+  id: string;
+};
+
 export {
   UpdateUserDTO,
   FindByNumberDTO,
@@ -38,4 +42,5 @@ export {
   CreateUserDTO,
   UserLoginDTO,
   NewTokenDTO,
+  DeleteUserDTO,
 };
