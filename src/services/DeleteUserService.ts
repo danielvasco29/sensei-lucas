@@ -13,8 +13,6 @@ class DeleteUserService {
 
     await usersRepository.delete({ id });
   }
-
-  return;
 }
 
 export { DeleteUserService };
