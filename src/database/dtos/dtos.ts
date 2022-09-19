@@ -34,6 +34,10 @@ type DeleteUserDTO = {
   id: string;
 };
 
+type ReadUserDTO = {
+  id: string;
+};
+
 export {
   UpdateUserDTO,
   FindByNumberDTO,
@@ -43,4 +47,5 @@ export {
   UserLoginDTO,
   NewTokenDTO,
   DeleteUserDTO,
+  ReadUserDTO,
 };
