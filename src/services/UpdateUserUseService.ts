@@ -19,8 +19,6 @@ class UpdateUserUseService {
     if (!updatedUser) {
       throw new AppError('User update failed, contact suport for more details');
     }
-
-    return updatedUser;
   }
 }
 

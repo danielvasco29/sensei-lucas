@@ -49,7 +49,7 @@ class UsersRepository {
   }
 
   async delete({ id }: DeleteUserDTO) {
-    const deleteUser = await prisma.user.delete({
+    await prisma.user.delete({
       where: {
         id,
       },

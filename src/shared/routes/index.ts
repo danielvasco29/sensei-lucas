@@ -14,14 +14,19 @@ const userLoginController = new UserLoginController();
 const updateUserController = new UpdateUserController();
 const deleteUserController = new DeleteUserController();
 
-router.post('/users/create', createUserController.control);
-router.post('/users/login', userLoginController.control);
+router.post('/users/create', errorHandle, createUserController.control);
+router.post('/users/login', errorHandle, userLoginController.control);
 router.put(
   '/users/update',
   authSecurity,
   errorHandle,
   updateUserController.control
 );
-router.delete('/users/delete', authSecurity, deleteUserController.control);
+router.delete(
+  '/users/delete',
+  authSecurity,
+  errorHandle,
+  deleteUserController.control
+);
 
 export { router };

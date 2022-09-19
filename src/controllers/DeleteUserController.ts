@@ -10,7 +10,7 @@ class DeleteUserController {
 
     const deleteUser = await deleteUserService.execute({ id });
 
-    return res.status(204).json(deleteUser);
+    return res.status(204).send();
   }
 }
 
