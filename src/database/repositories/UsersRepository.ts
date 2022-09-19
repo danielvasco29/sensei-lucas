@@ -33,6 +33,17 @@ class UsersRepository {
       where: {
         id,
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        password: false,
+        isAdmin: true,
+        birthDate: true,
+        cellNumber: true,
+        created_at: true,
+        updated_at: true,
+      },
     });
     return userFound;
   }
