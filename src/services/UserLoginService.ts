@@ -28,7 +28,7 @@ class UserLoginService {
       expiresIn: '1d',
     });
     if (!newToken) {
-      throw new AppError('login failed', 401);
+      throw new AppError('login failed, contact support', 401);
     }
 
     const tokensRepository = new TokensRepository();
@@ -36,8 +36,9 @@ class UserLoginService {
     const tokenConflict = await tokensRepository.findByUserId({
       userId: userAlreadyExists.id,
     });
-    if (!tokenConflict) {
-      tokensRepository.delete({ userId: userAlreadyExists.id });
+
+    if (tokenConflict) {
+      await tokensRepository.delete({ userId: userAlreadyExists.id });
     }
 
     await tokensRepository.create({

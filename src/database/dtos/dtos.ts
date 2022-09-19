@@ -55,7 +55,12 @@ type DeleteTokenDTO = {
   userId: string;
 };
 
+type ReadAllUserDTO = {
+  userId: string;
+};
+
 export {
+  ReadAllUserDTO,
   UserLogoutDTO,
   FindByUserIdDTO,
   DeleteTokenDTO,

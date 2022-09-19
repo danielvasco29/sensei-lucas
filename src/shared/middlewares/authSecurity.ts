@@ -25,8 +25,9 @@ export async function authSecurity(
       userId: id,
     });
 
-    if (token !== tokenDB) {
-      throw Error();
+    // eslint-disable-next-line eqeqeq
+    if (token != tokenDB) {
+      throw new Error();
     }
 
     req.user = {
