@@ -1,8 +1,8 @@
+import 'dotenv/config';
 import cors from 'cors';
-import 'express-async-errors';
 import express from 'express';
 
-import 'dotenv/config';
+import 'express-async-errors';
 import { errorHandle } from '../utils/errorHandle';
 import { router } from './routes';
 
