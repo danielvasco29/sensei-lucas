@@ -487,7 +487,7 @@
 
 "@types/swagger-ui-express@^4.1.3":
   version "4.1.3"
-  resolved "https://registry.npmmirror.com/@types/swagger-ui-express/-/swagger-ui-express-4.1.3.tgz"
+  resolved "https://registry.yarnpkg.com/@types/swagger-ui-express/-/swagger-ui-express-4.1.3.tgz#7adbbbf5343b45869debef1e9ff39c9ba73e380f"
   integrity sha512-jqCjGU/tGEaqIplPy3WyQg+Nrp6y80DCFnDEAvVKWkJyv0VivSSDCChkppHRHAablvInZe6pijDFMnavtN0vqA==
   dependencies:
     "@types/express" "*"
@@ -1362,8 +1362,13 @@ etag@~1.8.1:
 
 express-async-errors@^3.1.1:
   version "3.1.1"
-  resolved "https://registry.npmmirror.com/express-async-errors/-/express-async-errors-3.1.1.tgz"
+  resolved "https://registry.yarnpkg.com/express-async-errors/-/express-async-errors-3.1.1.tgz#6053236d61d21ddef4892d6bd1d736889fc9da41"
   integrity sha512-h6aK1da4tpqWSbyCa3FxB/V6Ehd4EEB15zyQq9qe75OZBp0krinNKuH4rAY+S/U/2I36vdLAUFSjQJ+TFmODng==
+
+express-async-handler@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/express-async-handler/-/express-async-handler-1.2.0.tgz#ffc9896061d90f8d2e71a2d2b8668db5b0934391"
+  integrity sha512-rCSVtPXRmQSW8rmik/AIb2P0op6l7r1fMW538yyvTMltCO4xQEWMmobfrIxN2V1/mVrgxB8Az3reYF6yUZw37w==
 
 express@^4.18.1:
   version "4.18.1"
@@ -2828,7 +2833,7 @@ swagger-ui-dist@>=4.11.0:
 
 swagger-ui-express@^4.5.0:
   version "4.5.0"
-  resolved "https://registry.npmmirror.com/swagger-ui-express/-/swagger-ui-express-4.5.0.tgz"
+  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.5.0.tgz#feb1314627092eb9c7e6b65ee018927011445530"
   integrity sha512-DHk3zFvsxrkcnurGvQlAcLuTDacAVN1JHKDgcba/gr2NFRE4HGwP1YeHIXMiGznkWR4AeS7X5vEblNn4QljuNA==
   dependencies:
     swagger-ui-dist ">=4.11.0"
