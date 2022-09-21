@@ -4,9 +4,7 @@ import { ReadUserIdService } from '../services/ReadUserIdService';
 
 class ReadUserIdController {
   async control(req: Request, res: Response): Promise<Response> {
-    const { id } =
-      (req.body as unknown as { id: string }) ||
-      (req.user as unknown as { id: string });
+    const id = (req.headers['x-users-id'] as string) || (req.user.id as string);
 
     const readUserService = new ReadUserIdService();
 

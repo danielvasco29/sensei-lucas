@@ -1,16 +1,12 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Lets-Dev",
-    "description": "API Desenvolvida no lets-dev 2.0",
+    "title": "sensei-lucas",
+    "description": "API Cadastro de Usuários",
     "contact": {
       "email": "danielvasconcelos.reis@gmail.com"
     },
     "version": "0.1.0"
-  },
-  "externalDocs": {
-    "description": "Veja nosso conteúdo do notion",
-    "url": "https://www.notion.so/paipe/Projeto-Final-Let-s-Dev-59e0052f43c542d6b488c5ebd49163f3"
   },
   "servers": [
     {
@@ -82,7 +78,50 @@
           "Usuário"
         ],
         "summary": "Ler perfil de Usuário",
-        "operationId": "readUser"
+        "operationId": "readUser",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-users-id",
+            "description": "Listar um usuário pelo ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado com sucesso!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/readUser"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User not exists!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/users/update": {
@@ -269,6 +308,57 @@
           "isAdmin",
           "password"
         ]
+      },
+      "readUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "41c22ef1-b94f-4eca-8c2e-fca12347a2c8"
+          },
+          "name": {
+            "type": "string",
+            "example": "Guilherme"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "isAdmin": {
+            "type": "boolean",
+            "example": "true"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cellNumber": {
+            "type": "string",
+            "example": "556190009000"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "isAdmin",
+          "password"
+        ]
+      },
+      "readId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
       },
       "createUser": {
         "type": "object",
