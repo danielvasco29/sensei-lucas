@@ -14,7 +14,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:7000/api-docs",
+      "url": "http://localhost:7000/",
       "description": "Servidor Local"
     }
   ],
@@ -31,7 +31,9 @@
   "paths": {
     "/users/create": {
       "post": {
-        "tags": ["Usuário"],
+        "tags": [
+          "Usuário"
+        ],
         "summary": "Criar novo Usuário",
         "operationId": "createUser",
         "requestBody": {
@@ -45,7 +47,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Objeto criado com sucesso!",
             "content": {
               "application/json": {
@@ -76,42 +78,144 @@
     },
     "/users/read": {
       "get": {
-        "tags": ["Usuário"],
+        "tags": [
+          "Usuário"
+        ],
         "summary": "Ler perfil de Usuário",
         "operationId": "readUser"
       }
     },
     "/users/update": {
       "put": {
-        "tags": ["Usuário"],
+        "tags": [
+          "Usuário"
+        ],
         "summary": "Alterar perfil de Usuário",
         "operationId": "updateUser"
       }
     },
     "/users/delete": {
       "delete": {
-        "tags": ["Usuário"],
+        "tags": [
+          "Usuário"
+        ],
         "summary": "Deletar permanentemente Usuário",
-        "operationId": "deleteUser"
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-users-id",
+            "description": "Id's de usuários separados por ', '",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Objeto deletado com sucesso!"
+          },
+          "404": {
+            "description": "Usuário não encontrado!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User not found!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid Token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/users/all": {
       "get": {
-        "tags": ["Usuário"],
+        "tags": [
+          "Usuário"
+        ],
         "summary": "Ler todos os perfis de Usuário",
         "operationId": "allUsers"
       }
     },
     "/sessions/login": {
       "post": {
-        "tags": ["Sessão"],
+        "tags": [
+          "Sessão"
+        ],
         "summary": "Gerar token de acesso de um Usuário",
-        "operationId": "userLogin"
+        "operationId": "userLogin",
+        "requestBody": {
+          "description": "Criar um objeto de um usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário autenticado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuário ou senha incorreta!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Incorrect Email or Password"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sessions/logout": {
       "delete": {
-        "tags": ["Sessão"],
+        "tags": [
+          "Sessão"
+        ],
         "summary": "Deletar token de acesso de um Usuário",
         "operationId": "userLogout"
       }
@@ -159,7 +263,12 @@
             "format": "date-time"
           }
         },
-        "required": ["name", "email", "isAdmin", "password"]
+        "required": [
+          "name",
+          "email",
+          "isAdmin",
+          "password"
+        ]
       },
       "createUser": {
         "type": "object",
@@ -190,7 +299,40 @@
             "example": "556190009000"
           }
         },
-        "required": ["name", "email", "isAdmin", "password"]
+        "required": [
+          "name",
+          "email",
+          "isAdmin",
+          "password"
+        ]
+      },
+      "login": {
+        "type": "object",
+        "minProperties": 2,
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "example": "minhasenha123"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "token": {
+        "type": "object",
+        "minProperties": 1,
+        "properties": {
+          "newToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmllbHZhc2NvbmNlbG9zLnJlaXNAZ21haWwuY29tIiwiaWF0IjoxNjYzNzQ5MjQ4LCJleHAiOjE2NjM4MzU2NDgsInN1YiI6ImY0OTQxYjQ2LWMyYTAtNDRlNy05YzBhLTA0OTA2MzE0ZWFhYiJ9.l-ExFuOBloLotmftK-dVovnJbvkxIgosXDHIlaXqhAk"
+          }
+        }
       }
     },
     "securitySchemes": {

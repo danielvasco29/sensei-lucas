@@ -15,12 +15,12 @@ class UserLoginService {
 
     const userAlreadyExists = await usersRepository.findByEmail({ email });
     if (!userAlreadyExists) {
-      throw new AppError('Incorretct Email or Password', 400);
+      throw new AppError('Incorrect Email or Password', 400);
     }
 
     const passwordMatch = await compare(password, userAlreadyExists.password);
     if (!passwordMatch) {
-      throw new AppError('Incorretct Email or Password', 400);
+      throw new AppError('Incorrect Email or Password', 400);
     }
 
     const newToken = sign({ email }, secret, {
