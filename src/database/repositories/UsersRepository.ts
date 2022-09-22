@@ -54,7 +54,12 @@ class UsersRepository {
       where: {
         id,
       },
-      data: userData,
+      data: {
+        name: userData.name,
+        email: userData.email,
+        cellNumber: userData.cellNumber,
+        birthDate: userData.birthDate,
+      },
     });
 
     return updatedUser;
@@ -65,7 +70,9 @@ class UsersRepository {
       where: {
         id,
       },
-      data: userData,
+      data: {
+        password: userData.password,
+      },
     });
 
     return updatePassword;
