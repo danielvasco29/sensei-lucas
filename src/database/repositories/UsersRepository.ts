@@ -4,6 +4,7 @@ import {
   DeleteUserDTO,
   FindByEmailDTO,
   FindByIdDTO,
+  UpdatePassword,
   UpdateUserDTO,
 } from '../dtos/dtos';
 import { UserEntity } from '../entities/UserEntity';
@@ -57,6 +58,17 @@ class UsersRepository {
     });
 
     return updatedUser;
+  }
+
+  updatePassword({ id, userData }: UpdatePassword) {
+    const updatePassword = prisma.user.update({
+      where: {
+        id,
+      },
+      data: userData,
+    });
+
+    return updatePassword;
   }
 
   async delete({ id }: DeleteUserDTO) {

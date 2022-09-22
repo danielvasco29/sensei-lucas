@@ -10,21 +10,25 @@ import swaggerDocument from './swagger.json';
 
 const app = express();
 
-var options = {
-    explorer: false,
-    swaggerOptions: {
-        docExpansion: "none",
-        url: "/api-docs/swagger.json",
-        persistAuthorization: true,
-        filter: true
-    }
-}
+const options = {
+  explorer: false,
+  swaggerOptions: {
+    docExpansion: 'none',
+    url: '/api-docs/swagger.json',
+    persistAuthorization: true,
+    filter: true,
+  },
+};
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.get('/api-docs/swagger.json', (req, res) => res.json(swaggerDocument));
-app.use('/api-docs', swaggerUi.serveFiles(null, options), swaggerUi.setup(null, options));
+app.use(
+  '/api-docs',
+  swaggerUi.serveFiles(null, options),
+  swaggerUi.setup(null, options)
+);
 app.use(router);
 app.use(errorHandle);
 

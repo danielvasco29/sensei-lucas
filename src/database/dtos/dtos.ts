@@ -18,6 +18,11 @@ type UpdateUserDTO = {
   userData: Partial<UserEntity>;
 };
 
+type UpdatePassword = {
+  id?: string;
+  userData: Partial<UserEntity>;
+};
+
 type FindByEmailDTO = {
   email: string;
 };
@@ -60,6 +65,7 @@ type ReadAllUserDTO = {
 };
 
 export {
+  UpdatePassword,
   ReadAllUserDTO,
   UserLogoutDTO,
   FindByUserIdDTO,
