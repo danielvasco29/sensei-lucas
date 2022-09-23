@@ -4,6 +4,7 @@ import { CreateUserController } from '../../controllers/CreateUserController';
 import { DeleteUserController } from '../../controllers/DeleteUserController';
 import { ReadAllUserController } from '../../controllers/ReadAllUserController';
 import { ReadUserIdController } from '../../controllers/ReadUserIdController';
+import { TurnAdminController } from '../../controllers/TurnAdminController';
 import { UpdatePasswordController } from '../../controllers/UpdatePasswordController';
 import { UpdateUserController } from '../../controllers/UpdateUserController';
 import { UserLoginController } from '../../controllers/UserLoginController';
@@ -20,6 +21,7 @@ const readUserIdController = new ReadUserIdController();
 const userLogoutController = new UserLogoutController();
 const readAllUserController = new ReadAllUserController();
 const updatePasswordController = new UpdatePasswordController();
+const turnAdminController = new TurnAdminController();
 
 router.post('/sessions/login', userLoginController.control);
 router.post('/users/create', createUserController.control);
@@ -33,5 +35,6 @@ router.post(
   authSecurity,
   updatePasswordController.control
 );
+router.put('/users/turnAdmin', authSecurity, turnAdminController.control);
 
 export { router };

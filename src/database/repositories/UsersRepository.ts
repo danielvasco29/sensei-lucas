@@ -4,6 +4,7 @@ import {
   DeleteUserDTO,
   FindByEmailDTO,
   FindByIdDTO,
+  TurnIsAdminDTO,
   UpdatePassword,
   UpdateUserDTO,
 } from '../dtos/dtos';
@@ -72,6 +73,19 @@ class UsersRepository {
       },
       data: {
         password: userData.password,
+      },
+    });
+
+    return updatePassword;
+  }
+
+  turnIsAdmin({ id, userData }: TurnIsAdminDTO) {
+    const updatePassword = prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        isAdmin: userData.isAdmin,
       },
     });
 

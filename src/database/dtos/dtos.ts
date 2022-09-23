@@ -1,6 +1,11 @@
 import { TokenEntity } from '../entities/TokenEntity';
 import { UserEntity } from '../entities/UserEntity';
 
+type TurnIsAdminDTO = {
+  id: string;
+  userData: Partial<UserEntity>;
+};
+
 type UserLogoutDTO = {
   userId: string;
 };
@@ -65,6 +70,7 @@ type ReadAllUserDTO = {
 };
 
 export {
+  TurnIsAdminDTO,
   UpdatePassword,
   ReadAllUserDTO,
   UserLogoutDTO,
