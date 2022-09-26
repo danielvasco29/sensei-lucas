@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import { CreateBookstoreController } from '../../controllers/CreateBookstoreController';
 import { CreateUserController } from '../../controllers/CreateUserController';
 import { DeleteUserController } from '../../controllers/DeleteUserController';
 import { ReadAllUserController } from '../../controllers/ReadAllUserController';
@@ -22,6 +23,7 @@ const userLogoutController = new UserLogoutController();
 const readAllUserController = new ReadAllUserController();
 const updatePasswordController = new UpdatePasswordController();
 const turnAdminController = new TurnAdminController();
+const createBookstoreController = new CreateBookstoreController();
 
 router.post('/sessions/login', userLoginController.control);
 router.post('/users/create', createUserController.control);
@@ -36,5 +38,6 @@ router.post(
   updatePasswordController.control
 );
 router.put('/users/turnAdmin', authSecurity, turnAdminController.control);
+router.post('/bookstore/create', createBookstoreController.control);
 
 export { router };

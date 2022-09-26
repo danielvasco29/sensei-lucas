@@ -32,3 +32,13 @@ model Tokens {
 
   @@map("tokens")
 }
+
+model Bookstore {
+  id         String   @id @default(uuid())
+  name       String
+  adress     String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("bookstore")
+}
