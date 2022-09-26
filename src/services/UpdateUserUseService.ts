@@ -16,6 +16,7 @@ class UpdateUserUseService {
       id,
       userData,
     });
+
     if (!updatedUser) {
       throw new AppError('User update failed, contact suport for more details');
     }
