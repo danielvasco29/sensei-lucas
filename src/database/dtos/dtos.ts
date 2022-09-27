@@ -32,6 +32,10 @@ type FindByEmailDTO = {
   email: string;
 };
 
+type FindByAdminDTO = {
+  isAdmin: boolean;
+};
+
 type FindByNumberDTO = {
   cellNumber: string;
 };
@@ -70,6 +74,7 @@ type ReadAllUserDTO = {
 };
 
 export {
+  FindByAdminDTO,
   TurnIsAdminDTO,
   UpdatePassword,
   ReadAllUserDTO,

@@ -2,6 +2,7 @@ import { prisma } from '../../../prisma/PrismaClient';
 import {
   CreateUserDTO,
   DeleteUserDTO,
+  FindByAdminDTO,
   FindByEmailDTO,
   FindByIdDTO,
   TurnIsAdminDTO,
@@ -25,6 +26,17 @@ class UsersRepository {
     const userFound = await prisma.user.findFirst({
       where: {
         email,
+      },
+    });
+    return userFound;
+  }
+
+  async findByAdmin({ isAdmin }: FindByAdminDTO): Promise<Partial<UserEntity>> {
+    const userFound = await prisma.user.findFirst({
+      where: {
+        isAdmin: {
+          equals: true,
+        },
       },
     });
     return userFound;
