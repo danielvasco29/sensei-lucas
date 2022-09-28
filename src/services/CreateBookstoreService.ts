@@ -6,7 +6,8 @@ import { AppError } from '../errors/AppError';
 
 type BookstoreDataDTO = {
   bookstoreData: BookstoreEntity;
-  isAdmin: boolean;
+  isAdmin?: boolean;
+  name?: string;
 };
 
 class CreateBookstoreService {
@@ -14,6 +15,7 @@ class CreateBookstoreService {
     bookstoreData,
     isAdmin,
   }: BookstoreDataDTO): Promise<BookstoreEntity> {
+    const { name } = bookstoreData;
     const usersRepository = new UsersRepository();
 
     const admin = await usersRepository.findByAdmin({ isAdmin });
@@ -22,6 +24,13 @@ class CreateBookstoreService {
     }
 
     const bookstoreRepository = new BookstoreRepository();
+
+    const bookstoreAlreadyExists = await bookstoreRepository.findByName({
+      name,
+    });
+    if (bookstoreAlreadyExists) {
+      throw new AppError('Bookstore Already Exists!', 404);
+    }
 
     const newBookstore = await bookstoreRepository.create({
       bookstoreData,
