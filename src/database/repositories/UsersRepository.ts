@@ -31,16 +31,16 @@ class UsersRepository {
     return userFound;
   }
 
-  async findByAdmin({ isAdmin }: FindByAdminDTO): Promise<Partial<UserEntity>> {
-    const userFound = await prisma.user.findFirst({
-      where: {
-        isAdmin: {
-          equals: true,
-        },
-      },
-    });
-    return userFound;
-  }
+  // async findByAdmin({ isAdmin }: FindByAdminDTO): Promise<Partial<UserEntity>> {
+  //   const userFound = await prisma.user.findFirst({
+  //     where: {
+  //       isAdmin: {
+  //         equals: true,
+  //       },
+  //     },
+  //   });
+  //   return userFound;
+  // }
 
   async findByID({ id }: FindByIdDTO): Promise<Partial<UserEntity>> {
     const userFound = await prisma.user.findFirst({

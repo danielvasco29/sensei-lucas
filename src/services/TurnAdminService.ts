@@ -16,11 +16,6 @@ class TurnAdminService {
     if (!userAlreadyExists) {
       throw new AppError('IdUser not found!', 404);
     }
-
-    const turnAdmin = await usersRepository.turnIsAdmin({ id, userData });
-    if (!turnAdmin) {
-      throw new AppError('Turn Admin failed', 400);
-    }
   }
 }
 

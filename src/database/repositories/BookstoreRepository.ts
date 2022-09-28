@@ -1,12 +1,8 @@
 import { prisma } from '../../../prisma/PrismaClient';
 import { BookstoreEntity } from '../entities/BookstoreEntity';
-import { UserEntity } from '../entities/UserEntity';
 
 type BookstoreDataDTO = {
-  id?: string;
-  name?: string;
-  bookstoreData?: Partial<BookstoreEntity>;
-  userData?: UserEntity;
+  id: string;
 };
 
 type CreateBookstoreDataDTO = {
@@ -15,6 +11,11 @@ type CreateBookstoreDataDTO = {
 
 type FindByNameDTO = {
   name: string;
+};
+
+type BookstoreDataDTO2 = {
+  id: string;
+  bookstoreData: Partial<BookstoreEntity>;
 };
 
 class BookstoreRepository {
@@ -56,7 +57,7 @@ class BookstoreRepository {
   async update({
     id,
     bookstoreData,
-  }: BookstoreDataDTO): Promise<BookstoreEntity> {
+  }: BookstoreDataDTO2): Promise<BookstoreEntity> {
     const updateBookstore = await prisma.bookstore.update({
       where: {
         id,
@@ -66,6 +67,7 @@ class BookstoreRepository {
         adress: bookstoreData.adress,
       },
     });
+
     return updateBookstore;
   }
 

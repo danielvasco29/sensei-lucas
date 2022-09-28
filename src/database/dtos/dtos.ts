@@ -55,6 +55,7 @@ type NewTokenDTO = {
 
 type DeleteUserDTO = {
   id: string;
+  isAdmin?: boolean;
 };
 
 type ReadUserDTO = {
