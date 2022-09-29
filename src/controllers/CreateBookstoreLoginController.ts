@@ -4,11 +4,15 @@ import { CreateBookstoreLoginService } from '../services/CreateBookstoreLoginSer
 
 class CreateBookstoreLoginController {
   async control(req: Request, res: Response): Promise<Response> {
-    const { name } = req.body;
+    const { name, adress } = req.body;
     console.log('name', name);
 
     const createBookstoreLoginService = new CreateBookstoreLoginService();
-    const newToken = await createBookstoreLoginService.execute({ name });
+    console.log('testeteste');
+    const newToken = await createBookstoreLoginService.execute({
+      name,
+      adress,
+    });
     console.log('newToken', newToken);
 
     return res.status(200).json(newToken);
