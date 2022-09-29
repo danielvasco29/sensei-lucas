@@ -1,7 +1,7 @@
 import { Bookstore } from '@prisma/client';
 
 class BookstoreEntity implements Bookstore {
-  readonly id: string;
+  readonly id_bookstore: string;
   name: string;
   adress: string;
   readonly created_at: Date;

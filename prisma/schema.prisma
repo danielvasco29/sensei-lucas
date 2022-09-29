@@ -30,18 +30,18 @@ model Tokens {
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  bookstore   Bookstore @relation(fields: [bookstoreId], references: [id], onDelete: Cascade)
+  bookstore   Bookstore @relation(fields: [bookstoreId], references: [id_bookstore], onDelete: Cascade)
 
   @@map("tokens")
 }
 
 model Bookstore {
-  id         String   @id @default(uuid())
-  name       String
-  adress     String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  Tokens     Tokens?
+  id_bookstore String   @id @default(uuid())
+  name         String
+  adress       String
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  Tokens       Tokens?
 
   @@map("bookstore")
 }

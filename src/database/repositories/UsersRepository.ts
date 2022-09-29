@@ -36,25 +36,25 @@ class UsersRepository {
 
 
 
-  async findByAdmin({ id }: IsAdminDTO): Promise<UserEntity> {
-    const userFound = await prisma.user.findFirst({
-      where: {
-        id,
-      },
-      select: {
-        id: false,
-        name: false,
-        email: false,
-        password: false,
-        isAdmin: true,
-        birthDate: false,
-        cellNumber: false,
-        created_at: false,
-        updated_at: false,
-      },
-    });
-    return userFound;
-  }
+  /*   async findByAdmin({ id }: IsAdminDTO): Promise<UserEntity> {
+      const userFound = await prisma.user.findFirst({
+        where: {
+          id,
+        },
+        select: {
+          id: false,
+          name: false,
+          email: false,
+          password: false,
+          isAdmin: true,
+          birthDate: false,
+          cellNumber: false,
+          created_at: false,
+          updated_at: false,
+        },
+      });
+      return userFound;
+    } */
 
   async findByID({ id }: FindByIdDTO): Promise<Partial<UserEntity>> {
     const userFound = await prisma.user.findFirst({

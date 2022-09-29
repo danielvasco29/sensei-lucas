@@ -41,9 +41,6 @@ router.post(
   authSecurity,
   updatePasswordController.control
 );
-<<<<<<< HEAD
-router.put('/users/turnadmin', authSecurity, turnAdminController.control);
-=======
 router.put('/users/turnAdmin', authSecurity, turnAdminController.control);
 router.post('/bookstore/create', createBookstoreController.control);
 router.post(
@@ -52,6 +49,5 @@ router.post(
   updateBookstoreController.control
 );
 router.post('/bookstore/login', createBookstoreLoginController.control);
->>>>>>> 0b966e0d13abf6585ab1c36e18e58e489fdfc3a9
 
 export { router };

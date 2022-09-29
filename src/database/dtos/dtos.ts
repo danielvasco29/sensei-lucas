@@ -15,7 +15,9 @@ type CreateUserDTO = {
 };
 
 type CreateTokenDTO = {
-  tokenData: Partial<TokenEntity>;
+  tokenData?: Partial<TokenEntity>;
+  userId?: string;
+  token?: string;
 };
 
 type UpdateUserDTO = {
