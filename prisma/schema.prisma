@@ -23,25 +23,26 @@ model User {
 }
 
 model Tokens {
-  id          String    @id @default(uuid())
-  userId      String    @unique
-  bookstoreId String    @unique
+  id          String      @id @default(uuid())
+  userId      String      @unique
+  bookstoreId String      @unique
   token       String
-  created_at  DateTime  @default(now())
-  updated_at  DateTime  @updatedAt
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  bookstore   Bookstore @relation(fields: [bookstoreId], references: [id_bookstore], onDelete: Cascade)
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Bookstore   Bookstore[]
 
   @@map("tokens")
 }
 
 model Bookstore {
-  id_bookstore String   @id @default(uuid())
+  id           String   @id @default(uuid())
+  id_bookstore String   @unique
   name         String
   adress       String
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
-  Tokens       Tokens?
+  tokens       Tokens   @relation(fields: [id_bookstore], references: [bookstoreId])
 
   @@map("bookstore")
 }

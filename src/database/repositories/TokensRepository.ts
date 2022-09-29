@@ -3,7 +3,7 @@ import { CreateTokenDTO, DeleteTokenDTO, FindByUserIdDTO } from '../dtos/dtos';
 import { TokenEntity } from '../entities/TokenEntity';
 
 class TokensRepository {
-  async create({ userId, token }: CreateTokenDTO): Promise<void> {
+  async create({ tokenData: { userId, token }, }: CreateTokenDTO): Promise<void> {
     await prisma.tokens.create({
       data: {
         userId,

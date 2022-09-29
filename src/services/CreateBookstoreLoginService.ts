@@ -43,7 +43,8 @@ class CreateBookstoreLoginService {
 
     await tokensRepository.create({
       data: {
-        name
+        id_bookstore: nameExists.id_bookstore,
+        token: newToken,
       },
     });
 
