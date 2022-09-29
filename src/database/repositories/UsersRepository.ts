@@ -4,9 +4,15 @@ import {
   DeleteUserDTO,
   FindByEmailDTO,
   FindByIdDTO,
+  TurnIsAdminDTO,
+  UpdatePassword,
   UpdateUserDTO,
 } from '../dtos/dtos';
 import { UserEntity } from '../entities/UserEntity';
+
+type IsAdminDTO = {
+  id: string;
+}
 
 class UsersRepository {
   async create({ userData }: CreateUserDTO) {
@@ -23,6 +29,28 @@ class UsersRepository {
     const userFound = await prisma.user.findFirst({
       where: {
         email,
+      },
+    });
+    return userFound;
+  }
+
+
+
+  async findByAdmin({ id }: IsAdminDTO): Promise<UserEntity> {
+    const userFound = await prisma.user.findFirst({
+      where: {
+        id,
+      },
+      select: {
+        id: false,
+        name: false,
+        email: false,
+        password: false,
+        isAdmin: true,
+        birthDate: false,
+        cellNumber: false,
+        created_at: false,
+        updated_at: false,
       },
     });
     return userFound;
@@ -53,10 +81,41 @@ class UsersRepository {
       where: {
         id,
       },
-      data: userData,
+      data: {
+        name: userData.name,
+        email: userData.email,
+        cellNumber: userData.cellNumber,
+        birthDate: userData.birthDate,
+      },
     });
 
     return updatedUser;
+  }
+
+  updatePassword({ id, userData }: UpdatePassword) {
+    const updatePassword = prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        password: userData.password,
+      },
+    });
+
+    return updatePassword;
+  }
+
+  turnIsAdmin({ id, userData }: TurnIsAdminDTO) {
+    const updatePassword = prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        isAdmin: userData.isAdmin,
+      },
+    });
+
+    return updatePassword;
   }
 
   async delete({ id }: DeleteUserDTO) {
