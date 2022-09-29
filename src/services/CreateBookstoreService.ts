@@ -1,7 +1,6 @@
 import { BookstoreEntity } from '../database/entities/BookstoreEntity';
-import { UserEntity } from '../database/entities/UserEntity';
 import { BookstoreRepository } from '../database/repositories/BookstoreRepository';
-import { UsersRepository } from '../database/repositories/UsersRepository';
+import { FindByAdminRepository } from '../database/repositories/FindByAdminRepository';
 import { AppError } from '../errors/AppError';
 
 type BookstoreDataDTO = {
@@ -15,16 +14,14 @@ class CreateBookstoreService {
     bookstoreData,
     isAdmin,
   }: BookstoreDataDTO): Promise<BookstoreEntity> {
-    const { name } = bookstoreData;
-    const usersRepository = new UsersRepository();
-
-    const admin = await usersRepository.findByAdmin({ isAdmin });
+    const findByAdminRepository = new FindByAdminRepository();
+    const admin = await findByAdminRepository.findByAdmin({ isAdmin });
     if (!admin) {
       throw new AppError('User is not admin', 404);
     }
 
+    const { name } = bookstoreData;
     const bookstoreRepository = new BookstoreRepository();
-
     const bookstoreAlreadyExists = await bookstoreRepository.findByName({
       name,
     });

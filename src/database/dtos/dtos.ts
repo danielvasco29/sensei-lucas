@@ -63,11 +63,13 @@ type ReadUserDTO = {
 };
 
 type FindByUserIdDTO = {
-  userId: string;
+  userId?: string;
+  bookstoreId?: string;
 };
 
 type DeleteTokenDTO = {
-  userId: string;
+  userId?: string;
+  bookstoreId?: string;
 };
 
 type ReadAllUserDTO = {

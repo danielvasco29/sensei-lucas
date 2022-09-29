@@ -7,7 +7,6 @@ class UserLoginController {
     const { email, password } = req.body;
 
     const userLoginService = new UserLoginService();
-
     const newToken = await userLoginService.execute({
       email,
       password,

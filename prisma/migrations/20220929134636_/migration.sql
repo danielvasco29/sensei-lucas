@@ -15,10 +15,12 @@ CREATE TABLE "user" (
 CREATE TABLE "tokens" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "userId" TEXT NOT NULL,
+    "bookstoreId" TEXT NOT NULL,
     "token" TEXT NOT NULL,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME NOT NULL,
-    CONSTRAINT "tokens_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT "tokens_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "tokens_bookstoreId_fkey" FOREIGN KEY ("bookstoreId") REFERENCES "bookstore" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -38,3 +40,6 @@ CREATE UNIQUE INDEX "user_cellNumber_key" ON "user"("cellNumber");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "tokens_userId_key" ON "tokens"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "tokens_bookstoreId_key" ON "tokens"("bookstoreId");

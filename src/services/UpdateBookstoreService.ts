@@ -1,6 +1,5 @@
 import { BookstoreEntity } from '../database/entities/BookstoreEntity';
 import { BookstoreRepository } from '../database/repositories/BookstoreRepository';
-import { UsersRepository } from '../database/repositories/UsersRepository';
 import { AppError } from '../errors/AppError';
 
 type UpdateBookstoreDTO = {

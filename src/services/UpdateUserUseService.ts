@@ -8,6 +8,7 @@ class UpdateUserUseService {
     const usersRepository = new UsersRepository();
 
     const userAlreadyExists = await usersRepository.findByID({ id });
+    console.log('userAlreadyExists', userAlreadyExists);
     if (!userAlreadyExists) {
       throw new AppError('User not exists', 404);
     }

@@ -7,7 +7,6 @@ class CreateBookstoreController {
     const userObject = req.body;
 
     const createBookstoreService = new CreateBookstoreService();
-
     const createBookstore = await createBookstoreService.execute({
       bookstoreData: userObject,
     });

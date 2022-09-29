@@ -25,12 +25,15 @@ export async function authSecurity(
       userId: id,
     });
 
-    // eslint-disable-next-line eqeqeq
-    if (token != tokenDB) {
+    if (token !== tokenDB) {
       throw new Error();
     }
 
     req.user = {
+      id,
+    };
+
+    req.bookstore = {
       id,
     };
 
