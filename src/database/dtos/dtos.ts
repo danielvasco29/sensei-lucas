@@ -32,6 +32,10 @@ type FindByEmailDTO = {
   email: string;
 };
 
+type FindByAdminDTO = {
+  isAdmin: boolean;
+};
+
 type FindByNumberDTO = {
   cellNumber: string;
 };
@@ -51,6 +55,7 @@ type NewTokenDTO = {
 
 type DeleteUserDTO = {
   id: string;
+  isAdmin?: boolean;
 };
 
 type ReadUserDTO = {
@@ -58,11 +63,13 @@ type ReadUserDTO = {
 };
 
 type FindByUserIdDTO = {
-  userId: string;
+  userId?: string;
+  bookstoreId?: string;
 };
 
 type DeleteTokenDTO = {
-  userId: string;
+  userId?: string;
+  bookstoreId?: string;
 };
 
 type ReadAllUserDTO = {
@@ -70,6 +77,7 @@ type ReadAllUserDTO = {
 };
 
 export {
+  FindByAdminDTO,
   TurnIsAdminDTO,
   UpdatePassword,
   ReadAllUserDTO,
