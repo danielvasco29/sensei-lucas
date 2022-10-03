@@ -1,18 +1,19 @@
 import { Router } from 'express';
 
-import { CreateBookstoreController } from '../../controllers/CreateBookstoreController';
-import { CreateBookstoreLoginController } from '../../controllers/CreateBookstoreLoginController';
-import { CreateUserController } from '../../controllers/CreateUserController';
-import { DeleteUserController } from '../../controllers/DeleteUserController';
-import { ReadAllUserController } from '../../controllers/ReadAllUserController';
-import { ReadUserIdController } from '../../controllers/ReadUserIdController';
-import { TurnAdminController } from '../../controllers/TurnAdminController';
-import { UpdateBookstoreController } from '../../controllers/UpdateBookstoreController';
-import { UpdatePasswordController } from '../../controllers/UpdatePasswordController';
-import { UpdateUserController } from '../../controllers/UpdateUserController';
-import { UserLoginController } from '../../controllers/UserLoginController';
-import { UserLogoutController } from '../../controllers/UserLogoutController';
+import { TurnAdminController } from '../../modules/accounts/services/adminUser/TurnAdminController';
+import { CreateUserController } from '../../modules/accounts/services/createUser/CreateUserController';
+import { DeleteUserController } from '../../modules/accounts/services/deleteUser/DeleteUserController';
+import { UserLoginController } from '../../modules/accounts/services/loginUser/UserLoginController';
+import { UserLogoutController } from '../../modules/accounts/services/logoutUser/UserLogoutController';
+import { ReadAllUserController } from '../../modules/accounts/services/readUser/ReadAllUserController';
+import { ReadUserIdController } from '../../modules/accounts/services/readUser/ReadUserIdController';
+import { UpdatePasswordController } from '../../modules/accounts/services/updateUser/UpdatePasswordController';
+import { UpdateUserController } from '../../modules/accounts/services/updateUser/UpdateUserController';
+import { CreateBookstoreController } from '../../modules/bookstore/services/createBookstore/CreateBookstoreController';
+import { CreateBookstoreLoginController } from '../../modules/bookstore/services/loginBookstore/CreateBookstoreLoginController';
+import { UpdateBookstoreController } from '../../modules/bookstore/services/updateBookstore/UpdateBookstoreController';
 import { authSecurity } from '../middlewares/authSecurity';
+import { authSecurity2 } from '../middlewares/authSecurity2';
 
 const router = Router();
 
@@ -45,7 +46,7 @@ router.put('/users/turnAdmin', authSecurity, turnAdminController.control);
 router.post('/bookstore/create', createBookstoreController.control);
 router.post(
   '/bookstore/update',
-  authSecurity,
+  authSecurity2,
   updateBookstoreController.control
 );
 router.post('/bookstore/login', createBookstoreLoginController.control);

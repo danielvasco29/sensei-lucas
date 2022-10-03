@@ -1,16 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import { TokensRepository } from '../../database/repositories/TokensRepository';
+import { Tokens2Repository } from '../../database/repositories/Tokens2Repository';
 import { AppError } from '../../errors/AppError';
 import auth from '../../settings/auth';
 
-export async function authSecurity(
+export async function authSecurity2(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const tokensRepository = new TokensRepository();
+  const tokens2Repository = new Tokens2Repository();
 
   const authHeader = req.headers.authorization;
   if (!authHeader) {
@@ -21,15 +21,15 @@ export async function authSecurity(
 
   try {
     const { sub: id } = verify(token, auth.secret) as { sub: string };
-    const { token: tokenDB } = await tokensRepository.findByUserId({
-      userId: id,
+    const { token: tokenDB } = await tokens2Repository.findByBookstoreId({
+      bookstoreId: id,
     });
 
     if (token !== tokenDB) {
       throw new Error();
     }
 
-    req.user = {
+    req.bookstore = {
       id,
     };
 

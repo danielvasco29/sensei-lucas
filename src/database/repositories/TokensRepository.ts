@@ -14,34 +14,12 @@ class TokensRepository {
     });
   }
 
-  async create2({
-    tokenData: { bookstoreId, token },
-  }: CreateTokenDTO): Promise<void> {
-    await prisma.tokens.create({
-      data: {
-        bookstoreId,
-        token,
-      },
-    });
-  }
-
   async delete({ userId }: DeleteTokenDTO): Promise<void> {
     await prisma.tokens.delete({
       where: {
         userId,
       },
     });
-  }
-  async findByBookstoreId({
-    bookstoreId,
-  }: FindByUserIdDTO): Promise<TokenEntity> {
-    const foundToken = await prisma.tokens.findFirst({
-      where: {
-        bookstoreId,
-      },
-    });
-
-    return foundToken;
   }
 
   async findByUserId({ userId }: FindByUserIdDTO): Promise<TokenEntity> {
