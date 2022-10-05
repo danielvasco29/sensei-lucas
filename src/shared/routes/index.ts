@@ -5,10 +5,10 @@ import { CreateUserController } from '../../modules/accounts/services/createUser
 import { DeleteUserController } from '../../modules/accounts/services/deleteUser/DeleteUserController';
 import { UserLoginController } from '../../modules/accounts/services/loginUser/UserLoginController';
 import { UserLogoutController } from '../../modules/accounts/services/logoutUser/UserLogoutController';
-import { ReadAllUserController } from '../../modules/accounts/services/readUser/ReadAllUserController';
+import { ReadAllUserController } from '../../modules/accounts/services/readAllUser/ReadAllUserController';
 import { ReadUserIdController } from '../../modules/accounts/services/readUser/ReadUserIdController';
-import { UpdatePasswordController } from '../../modules/accounts/services/updateUser/UpdatePasswordController';
 import { UpdateUserController } from '../../modules/accounts/services/updateUser/UpdateUserController';
+import { UpdatePasswordController } from '../../modules/accounts/services/updateUserPassword/UpdatePasswordController';
 import { CreateBookstoreController } from '../../modules/bookstore/services/createBookstore/CreateBookstoreController';
 import { CreateBookstoreLoginController } from '../../modules/bookstore/services/loginBookstore/CreateBookstoreLoginController';
 import { UpdateBookstoreController } from '../../modules/bookstore/services/updateBookstore/UpdateBookstoreController';

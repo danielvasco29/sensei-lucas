@@ -6,13 +6,13 @@ import { AppError } from '../../../../errors/AppError';
 class DeleteUserService {
   private count: number;
 
-  async execute({ id, isAdmin }: DeleteUserDTO) {
+  async execute({ id, userData }: DeleteUserDTO) {
     const convertUsersIdToArray = id.split(', ');
     const actualId = convertUsersIdToArray[0];
     const findByAdminRepository = new FindByAdminRepository();
 
-    const userAdmin = await findByAdminRepository.findByAdmin({ isAdmin });
-    if (!userAdmin) {
+    const userAdmin = await findByAdminRepository.findByID({ id });
+    if (userAdmin.isAdmin === false) {
       throw new AppError('User not Admin', 404);
     }
 
@@ -22,7 +22,7 @@ class DeleteUserService {
       throw new AppError('User not found!', 404);
     }
 
-    await usersRepository.delete({ id: actualId });
+    await usersRepository.delete({ id: actualId, userData });
     // eslint-disable-next-line no-plusplus
     this.count++;
 

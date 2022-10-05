@@ -2,8 +2,9 @@ import { TokenEntity } from '../entities/TokenEntity';
 import { UserEntity } from '../entities/UserEntity';
 
 type TurnIsAdminDTO = {
-  id: string;
-  userData: Partial<UserEntity>;
+  id?: string;
+  userData?: Partial<UserEntity>;
+  isAdmin?: boolean;
 };
 
 type UserLogoutDTO = {
@@ -33,6 +34,8 @@ type FindByEmailDTO = {
 };
 
 type FindByAdminDTO = {
+  id: string;
+  userData?: string;
   isAdmin: boolean;
 };
 
@@ -54,8 +57,10 @@ type NewTokenDTO = {
 };
 
 type DeleteUserDTO = {
-  id: string;
+  id?: string;
   isAdmin?: boolean;
+  userId?: string;
+  userData?: Partial<UserEntity>;
 };
 
 type ReadUserDTO = {
