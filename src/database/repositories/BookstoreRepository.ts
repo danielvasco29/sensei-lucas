@@ -3,6 +3,7 @@ import { BookstoreEntity } from '../entities/BookstoreEntity';
 
 type BookstoreDataDTO = {
   id: string;
+  userData?: Partial<BookstoreEntity>;
 };
 
 type CreateBookstoreDataDTO = {

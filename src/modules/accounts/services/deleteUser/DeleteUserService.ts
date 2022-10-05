@@ -9,12 +9,6 @@ class DeleteUserService {
   async execute({ id, userData }: DeleteUserDTO) {
     const convertUsersIdToArray = id.split(', ');
     const actualId = convertUsersIdToArray[0];
-    const findByAdminRepository = new FindByAdminRepository();
-
-    const userAdmin = await findByAdminRepository.findByID({ id });
-    if (userAdmin.isAdmin === false) {
-      throw new AppError('User not Admin', 404);
-    }
 
     const usersRepository = new UsersRepository();
     const userAlreadExists = await usersRepository.findByID({ id });

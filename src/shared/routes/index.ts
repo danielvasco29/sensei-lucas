@@ -9,6 +9,7 @@ import { ReadAllUserController } from '../../modules/accounts/services/readAllUs
 import { ReadUserIdController } from '../../modules/accounts/services/readUser/ReadUserIdController';
 import { UpdateUserController } from '../../modules/accounts/services/updateUser/UpdateUserController';
 import { UpdatePasswordController } from '../../modules/accounts/services/updateUserPassword/UpdatePasswordController';
+import { DeleteBookstoreController } from '../../modules/bookstore/DeleteBookstoreController';
 import { CreateBookstoreController } from '../../modules/bookstore/services/createBookstore/CreateBookstoreController';
 import { CreateBookstoreLoginController } from '../../modules/bookstore/services/loginBookstore/CreateBookstoreLoginController';
 import { UpdateBookstoreController } from '../../modules/bookstore/services/updateBookstore/UpdateBookstoreController';
@@ -29,6 +30,7 @@ const turnAdminController = new TurnAdminController();
 const createBookstoreController = new CreateBookstoreController();
 const updateBookstoreController = new UpdateBookstoreController();
 const createBookstoreLoginController = new CreateBookstoreLoginController();
+const deleteBookstoreController = new DeleteBookstoreController();
 
 router.post('/sessions/login', userLoginController.control);
 router.post('/users/create', createUserController.control);
@@ -50,5 +52,10 @@ router.post(
   updateBookstoreController.control
 );
 router.post('/bookstore/login', createBookstoreLoginController.control);
+router.delete(
+  '/bookstore/delete',
+  authSecurity,
+  deleteBookstoreController.control
+);
 
 export { router };
