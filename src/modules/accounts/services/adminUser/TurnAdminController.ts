@@ -9,7 +9,6 @@ class TurnAdminController {
     const userData = req.body;
 
     const turnAdminService = new TurnAdminService();
-
     const turnAdmin = await turnAdminService.execute({ id, userData });
 
     return res.status(201).json(turnAdmin);

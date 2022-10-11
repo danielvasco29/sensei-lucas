@@ -79,8 +79,8 @@ class UsersRepository {
     return updatePassword;
   }
 
-  turnIsAdmin({ id, userData }: TurnIsAdminDTO) {
-    const updatePassword = prisma.user.update({
+  async turnIsAdmin({ id, userData }: TurnIsAdminDTO) : Promise<UserEntity> {
+    const updatePassword = await prisma.user.update({
       where: {
         id,
       },

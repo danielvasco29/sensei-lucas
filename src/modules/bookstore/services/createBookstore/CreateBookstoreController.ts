@@ -4,11 +4,14 @@ import { CreateBookstoreService } from './CreateBookstoreService';
 
 class CreateBookstoreController {
   async control(req: Request, res: Response): Promise<Response> {
-    const userObject = req.body;
+    const { id } = req.user;
+    
+    const bookstoreData = req.body;
 
     const createBookstoreService = new CreateBookstoreService();
+    
     const createBookstore = await createBookstoreService.execute({
-      bookstoreData: userObject,
+      bookstoreData, id
     });
 
     return res.status(201).json(createBookstore);

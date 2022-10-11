@@ -29,16 +29,16 @@
 		"no-unused-vars": "off",
 		"no-param-reassign": 0,
 		"prettier/prettier": [
-			"error", 
+			"warn", 
 			{
 			  "singleQuote": true,
 			  "endOfLine": "auto"
 			}
 		  ],
       "camelcase": "off",
-			"import/no-unresolved": "error",
+			"import/no-unresolved": "never",
 			"@typescript-eslint/naming-convention": [
-			  "error",
+			  "warn",
 			  {
 			    "selector": "interface",
 			    "format": ["PascalCase"],
@@ -58,7 +58,7 @@
 			"no-empty-function": "off",
 			"lines-between-class-members": "off",
 			"import/extensions": [
-			  "error",
+			  "warn",
 			  "ignorePackages",
 			  {
 			    "ts": "never"
@@ -73,7 +73,7 @@
 			  }
 			],
 			"import/no-extraneous-dependencies": [
-			  "error",
+			  "warn",
 			  { "devDependencies": ["**/*.spec.js"] }
 			]
     },

@@ -9,8 +9,8 @@ import { ReadAllUserController } from '../../modules/accounts/services/readAllUs
 import { ReadUserIdController } from '../../modules/accounts/services/readUser/ReadUserIdController';
 import { UpdateUserController } from '../../modules/accounts/services/updateUser/UpdateUserController';
 import { UpdatePasswordController } from '../../modules/accounts/services/updateUserPassword/UpdatePasswordController';
-import { DeleteBookstoreController } from '../../modules/bookstore/DeleteBookstoreController';
 import { CreateBookstoreController } from '../../modules/bookstore/services/createBookstore/CreateBookstoreController';
+import { DeleteBookstoreController } from '../../modules/bookstore/services/deleteBookstore/DeleteBookstoreController';
 import { CreateBookstoreLoginController } from '../../modules/bookstore/services/loginBookstore/CreateBookstoreLoginController';
 import { UpdateBookstoreController } from '../../modules/bookstore/services/updateBookstore/UpdateBookstoreController';
 import { authSecurity } from '../middlewares/authSecurity';
@@ -45,10 +45,10 @@ router.post(
   updatePasswordController.control
 );
 router.put('/users/turnAdmin', authSecurity, turnAdminController.control);
-router.post('/bookstore/create', createBookstoreController.control);
+router.post('/bookstore/create', authSecurity, createBookstoreController.control);
 router.post(
   '/bookstore/update',
-  authSecurity2,
+  authSecurity,
   updateBookstoreController.control
 );
 router.post('/bookstore/login', createBookstoreLoginController.control);

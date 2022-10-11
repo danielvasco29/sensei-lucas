@@ -4,7 +4,7 @@ import { UsersRepository } from '../../../../database/repositories/UsersReposito
 import { AppError } from '../../../../errors/AppError';
 
 class TurnAdminService {
-  async execute({ id, userData }: TurnIsAdminDTO) {
+  async execute({ id, userData }: TurnIsAdminDTO): Promise<void> {
     const usersRepository = new UsersRepository();
     const userAlreadyExists = await usersRepository.findByID({ id });
     if (userAlreadyExists.isAdmin === false) {

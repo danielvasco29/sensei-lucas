@@ -1,26 +1,39 @@
 import { prisma } from '../../../prisma/PrismaClient';
 import { BookstoreEntity } from '../entities/BookstoreEntity';
 
+type DeleteBookstoreDataDTO = {
+  bookstoreData: string;
+
+}
+
 type BookstoreDataDTO = {
-  id: string;
-  userData?: Partial<BookstoreEntity>;
+  bookstoreData?: string;
+  id?: string;
 };
 
 type CreateBookstoreDataDTO = {
   bookstoreData: BookstoreEntity;
+  isAdmin?: boolean | undefined;
 };
 
 type FindByNameDTO = {
-  name: string;
+  bookstoreData?: BookstoreEntity;
+  name?: string;
 };
 
 type BookstoreDataDTO2 = {
-  id: string;
+  id?: string;
+  bookstoreData?: string;
+  data: Partial<BookstoreEntity>;
+};
+
+type BookstoreDataDTO3 = {
   bookstoreData: Partial<BookstoreEntity>;
+  id?: string;
 };
 
 class BookstoreRepository {
-  async create({ bookstoreData }: CreateBookstoreDataDTO) {
+  async create({ bookstoreData }: CreateBookstoreDataDTO): Promise<BookstoreEntity> {
     const newBookstore = await prisma.bookstore.create({
       data: {
         ...bookstoreData,
@@ -46,36 +59,58 @@ class BookstoreRepository {
     return userFound;
   }
 
-  async findByName({ name }: FindByNameDTO): Promise<BookstoreEntity> {
+  async findByID2({ bookstoreData }: BookstoreDataDTO): Promise<BookstoreEntity> {
+    const userFound = await prisma.bookstore.findFirst({
+      where: {
+        id: bookstoreData,
+      },   
+    });
+    return userFound;
+  }
+
+  async findByID3({ bookstoreData }: BookstoreDataDTO): Promise<BookstoreEntity> {
+    const userFound = await prisma.bookstore.findFirst({
+      where: {
+        id: bookstoreData,
+      },
+    });
+    return userFound;
+  }
+
+  async findByName({ bookstoreData }: FindByNameDTO): Promise<BookstoreEntity> {
+    const { name } = bookstoreData;
+
     const nameFound = await prisma.bookstore.findFirst({
       where: {
-        name,
+        OR: [
+          {
+            name,
+          }
+        ]
       },
     });
     return nameFound;
   }
 
   async update({
-    id,
-    bookstoreData,
+    bookstoreData, data
   }: BookstoreDataDTO2): Promise<BookstoreEntity> {
     const updateBookstore = await prisma.bookstore.update({
       where: {
-        id,
+        id: bookstoreData,
       },
       data: {
-        name: bookstoreData.name,
-        adress: bookstoreData.adress,
+        ... data
       },
     });
 
     return updateBookstore;
   }
 
-  async delete({ id }: BookstoreDataDTO) {
+  async delete({ bookstoreData }: DeleteBookstoreDataDTO): Promise<void> {
     await prisma.bookstore.delete({
       where: {
-        id,
+        id: bookstoreData,
       },
     });
   }

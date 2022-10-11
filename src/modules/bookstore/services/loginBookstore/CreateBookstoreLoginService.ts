@@ -11,15 +11,15 @@ import auth from '../../../../settings/auth';
 type BookstoreDTO = {
   adress?: string;
   name: string;
-  isAdmin?: boolean;
+  id?: string;
 };
 
 class CreateBookstoreLoginService {
-  async execute({ name, adress, isAdmin }: BookstoreDTO): Promise<NewTokenDTO> {
+  async execute({ name,  id }: BookstoreDTO): Promise<NewTokenDTO> {
     const { secret } = auth;
 
     const findByAdminRepository = new FindByAdminRepository();
-    const adminExists = await findByAdminRepository.findByAdmin({ isAdmin });
+    const adminExists = await findByAdminRepository.findByID({ id });
     if (!adminExists) {
       throw new AppError('User is not admin!', 404);
     }

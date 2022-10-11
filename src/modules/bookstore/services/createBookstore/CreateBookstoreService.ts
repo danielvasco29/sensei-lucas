@@ -1,30 +1,28 @@
 import { BookstoreEntity } from '../../../../database/entities/BookstoreEntity';
 import { BookstoreRepository } from '../../../../database/repositories/BookstoreRepository';
-import { FindByAdminRepository } from '../../../../database/repositories/FindByAdminRepository';
+import { UsersRepository } from '../../../../database/repositories/UsersRepository';
 import { AppError } from '../../../../errors/AppError';
 
 type BookstoreDataDTO = {
   bookstoreData: BookstoreEntity;
-  isAdmin?: boolean;
-  name?: string;
+  admin?: boolean | undefined;
+  id?: string;
 };
 
 class CreateBookstoreService {
   async execute({
     bookstoreData,
-    isAdmin,
-  }: BookstoreDataDTO): Promise<BookstoreEntity> {
-    const findByAdminRepository = new FindByAdminRepository();
-    const admin = await findByAdminRepository.findByAdmin({ isAdmin });
-    if (!admin) {
-      throw new AppError('User is not admin', 404);
+    id,
+  }: BookstoreDataDTO) {
+    const usersRepository = new UsersRepository()
+    const findAdmin = await usersRepository.findByID({ id })
+    if(findAdmin.isAdmin === false) {
+      throw new AppError('User is not admin!', 404)
     }
 
     const bookstoreRepository = new BookstoreRepository();
-
-    const { name } = bookstoreData;
     const bookstoreAlreadyExists = await bookstoreRepository.findByName({
-      name,
+      bookstoreData,
     });
     if (bookstoreAlreadyExists) {
       throw new AppError('Bookstore Already Exists!', 404);
