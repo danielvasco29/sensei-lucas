@@ -5,7 +5,6 @@ import { AppError } from '../../../../errors/AppError';
 
 type BookstoreDataDTO = {
   bookstoreData: BookstoreEntity;
-  admin?: boolean | undefined;
   id?: string;
 };
 

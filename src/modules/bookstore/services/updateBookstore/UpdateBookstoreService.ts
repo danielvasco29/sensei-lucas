@@ -7,11 +7,13 @@ type UpdateBookstoreDTO = {
   id?: string;
   data: Partial<BookstoreEntity>;
   bookstoreData: string;
+  name?: string;
+  findbyName?: string;
 };
 
 class UpdateBookstoreService {
   async execute({
-    id, bookstoreData, data,
+    id, bookstoreData, data, name
   }: UpdateBookstoreDTO): Promise<BookstoreEntity> {
     const usersRepository = new UsersRepository();
 
@@ -23,7 +25,8 @@ class UpdateBookstoreService {
     
     const bookstoreRepository = new BookstoreRepository();
 
-   /*  const nameAlreadyExists = await bookstoreRepository.findByID({ id });
+    /* const nameAlreadyExists = await bookstoreRepository.findByName2({name});
+    console.log('nameAlreadyExists', nameAlreadyExists)
     if (!nameAlreadyExists) {
       throw new AppError('Bookstore not exists', 404);
     } */

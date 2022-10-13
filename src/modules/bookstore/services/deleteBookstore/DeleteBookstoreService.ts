@@ -5,10 +5,8 @@ import { AppError } from "../../../../errors/AppError";
 
 
 type DeletebookstoreDTO = {
-  id?: string;
-  userData?: Partial<UserEntity>;
-  name?: string;
-  bookstoreData?: string;
+  id: string;
+  bookstoreData: string;
 };
 
 class DeleteBookstoreService {
@@ -22,8 +20,9 @@ class DeleteBookstoreService {
     const bookstoreRepository = new BookstoreRepository();
 
     const bookstoreExists = bookstoreRepository.findByID2({ bookstoreData });
-    
-    if(!bookstoreExists) throw new AppError('Book dont exists', 404)
+    if(!bookstoreExists) {
+      throw new AppError('Book dont exists', 404)
+    }
 
     await bookstoreRepository.delete({ bookstoreData });
   }

@@ -17,9 +17,14 @@ type CreateBookstoreDataDTO = {
 };
 
 type FindByNameDTO = {
-  bookstoreData?: BookstoreEntity;
+  bookstoreData: BookstoreEntity;
   name?: string;
 };
+
+type FindByNameDTO2 = {
+  findbyName?: Partial<BookstoreEntity>;
+  name?: string;
+}
 
 type BookstoreDataDTO2 = {
   id?: string;
@@ -86,6 +91,20 @@ class BookstoreRepository {
           {
             name,
           }
+        ]
+      },
+    });
+    return nameFound;
+  }
+
+  async findByName2({ name }: FindByNameDTO2): Promise<BookstoreEntity> {
+
+    const nameFound = await prisma.bookstore.findFirst({
+      where: {
+        OR: [
+          {
+            name,
+          } 
         ]
       },
     });
