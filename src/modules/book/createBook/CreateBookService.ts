@@ -18,7 +18,7 @@ class CreateBookService {
         
         // faz uma comparação do name passado no body, com o name salvo no banco
         const bookRepository = new BookRepository();
-        const verifyBookNameExists = await bookRepository.findByName({ bookData })
+        await bookRepository.findByName({ bookData })
         // if(verifyBookNameExists) throw new AppError('Name already exists', 404)
 
         const createBook = await bookRepository.create({ bookData, bookstoreId });
