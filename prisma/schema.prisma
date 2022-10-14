@@ -39,7 +39,6 @@ model Bookstore {
   adress     String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  tokens2    Tokens2?
 
   @@map("bookstore")
 }
@@ -52,15 +51,4 @@ model Book {
   updated_at DateTime @updatedAt
 
   @@map("book")
-}
-
-model Tokens2 {
-  id          String    @id @default(uuid())
-  bookstoreId String    @unique
-  token       String
-  created_at  DateTime  @default(now())
-  updated_at  DateTime  @updatedAt
-  bookstore   Bookstore @relation(fields: [bookstoreId], references: [id], onDelete: Cascade)
-
-  @@map("tokens2")
 }

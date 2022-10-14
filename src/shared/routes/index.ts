@@ -14,7 +14,6 @@ import { DeleteBookstoreController } from '../../modules/bookstore/services/dele
 import { ReadBookstoreController } from '../../modules/bookstore/services/readBookstore/ReadBookstoreController';
 import { UpdateBookstoreController } from '../../modules/bookstore/services/updateBookstore/UpdateBookstoreController';
 import { authSecurity } from '../middlewares/authSecurity';
-import { authSecurity2 } from '../middlewares/authSecurity2';
 
 const router = Router();
 
