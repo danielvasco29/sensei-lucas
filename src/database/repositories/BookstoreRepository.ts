@@ -12,8 +12,7 @@ type BookstoreDataDTO = {
 };
 
 type BookstoreDataDTO4 = {
-  bookstoreId?: string;
-  id?: string;
+  bookstoreId: string;
 };
 
 type CreateBookstoreDataDTO = {
@@ -35,6 +34,7 @@ type BookstoreDataDTO2 = {
   id?: string;
   bookstoreData?: string;
   data: Partial<BookstoreEntity>;
+  bookstoreId?: string;
 };
 
 type BookstoreDataDTO3 = {
@@ -78,12 +78,14 @@ class BookstoreRepository {
     return userFound;
   }
 
+  // procura um registro id que seja igual ao bookstoreId
   async findByID3({ bookstoreId }: BookstoreDataDTO4): Promise<BookstoreEntity> {
     const userFound = await prisma.bookstore.findFirst({
     where: {
       id: bookstoreId,
     }
     });
+
     return userFound;
   }
 
@@ -116,12 +118,13 @@ class BookstoreRepository {
     return nameFound;
   }
 
+  // faz o update do id passado pelo headers bookstoreId ['x-bookstore-id']
   async update({
-    bookstoreData, data
+    bookstoreId, data, 
   }: BookstoreDataDTO2): Promise<BookstoreEntity> {
     const updateBookstore = await prisma.bookstore.update({
       where: {
-        id: bookstoreData,
+        id: bookstoreId,
       },
       data: {
         ... data

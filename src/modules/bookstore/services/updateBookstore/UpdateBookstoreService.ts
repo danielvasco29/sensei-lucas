@@ -4,45 +4,33 @@ import { UsersRepository } from '../../../../database/repositories/UsersReposito
 import { AppError } from '../../../../errors/AppError';
 
 type UpdateBookstoreDTO = {
-  id?: string;
+  id: string;
   data: Partial<BookstoreEntity>;
-  bookstoreData: string;
-  name?: string;
-  bookstoreId?: string
-  findbyName?: string;
+  bookstoreId: string
 };
 
 class UpdateBookstoreService {
   async execute({
-    id, bookstoreData, data, bookstoreId
+    id, data, bookstoreId
   }: UpdateBookstoreDTO): Promise<BookstoreEntity> {
+    
+    // valida se id que está logado no insomnia é ou não Admin 
     const usersRepository = new UsersRepository();
-
-    // valida id recebido se é ou não Admin
     const userAlreadExists = await usersRepository.findByID({ id });
-    if (userAlreadExists.isAdmin === false) {
-      throw new AppError('User not is Admin', 404);
-    }
+    if (userAlreadExists.isAdmin === false) throw new AppError('User not is Admin', 404);
     
+    // metodo pega o bookstoreId passado no insomnia, e envia para o controller
     const bookstoreRepository = new BookstoreRepository();
-
-    const nameAlreadyExists = await bookstoreRepository.findByID2({ id: bookstoreId });
-    console.log('bookstoreId', bookstoreId)
-    console.log('nameAlreadyExists', nameAlreadyExists)
-    if (!nameAlreadyExists) {
-      throw new AppError('Bookstore not exists', 404);
-    }
-
-    const updatedBookstore = await bookstoreRepository.update({
-      data, bookstoreData,
-    });
+    const nameAlreadyExists = await bookstoreRepository.findByID3({ bookstoreId });
+    if (!nameAlreadyExists) throw new AppError('Bookstore not exists', 404);
     
-    console.log('bookstoreData', bookstoreData)
-    console.log('data', data)
-    if (!updatedBookstore) {
-      throw new AppError('Bookstore update failed', 404);
-    }
-
+    // data: envia o data para o body controller
+    // bookstoreId: envia o bookstoreId para o headers controller 
+    const updatedBookstore = await bookstoreRepository.update({
+      data, bookstoreId
+    });
+    if (!updatedBookstore) throw new AppError('Bookstore update failed', 404);
+    
     return updatedBookstore;
   }
 }
