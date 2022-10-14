@@ -3,6 +3,7 @@ import { BookEntity } from "../entities/BookEntity"
 
 type CreateBookDTO = {
     bookData: BookEntity;
+    bookstoreId: string;
 }
 
 type FindByIdDTO = {
@@ -15,10 +16,11 @@ type FindByNameDTO = {
 }
 
 class BookRepository {
-    async create({bookData}: CreateBookDTO) {
+    async create({bookData, bookstoreId}: CreateBookDTO) {
         const createBook = await prisma.book.create({
             data: {
-                ...bookData
+                ...bookData,
+                bookstoreId
             }
         })
         return createBook;

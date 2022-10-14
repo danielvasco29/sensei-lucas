@@ -39,16 +39,19 @@ model Bookstore {
   adress     String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  Book       Book?
 
   @@map("bookstore")
 }
 
 model Book {
-  id         String   @id @default(uuid())
-  name       String
-  author     String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id          String    @id @default(uuid())
+  name        String
+  author      String
+  bookstoreId String    @unique
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  bookstore   Bookstore @relation(fields: [bookstoreId], references: [id], onDelete: Cascade)
 
   @@map("book")
 }
