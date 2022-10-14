@@ -15,6 +15,7 @@ class UpdateBookstoreController {
 
     // recebe id header
     const bookstoreData = req.headers['x-bookstore-id'] as string; 
+    if(bookstoreData != bookstoreData) { throw new AppError ('id error'), 404 }
 
     // salva os dados recebidos do body, no id header
     const updateBookstoreService = new UpdateBookstoreService();

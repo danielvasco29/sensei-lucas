@@ -11,6 +11,11 @@ type BookstoreDataDTO = {
   id?: string;
 };
 
+type BookstoreDataDTO4 = {
+  bookstoreId?: string;
+  id?: string;
+};
+
 type CreateBookstoreDataDTO = {
   bookstoreData: BookstoreEntity;
   isAdmin?: boolean | undefined;
@@ -73,11 +78,11 @@ class BookstoreRepository {
     return userFound;
   }
 
-  async findByID3({ bookstoreData }: BookstoreDataDTO): Promise<BookstoreEntity> {
+  async findByID3({ bookstoreId }: BookstoreDataDTO4): Promise<BookstoreEntity> {
     const userFound = await prisma.bookstore.findFirst({
-      where: {
-        id: bookstoreData,
-      },
+    where: {
+      id: bookstoreId,
+    }
     });
     return userFound;
   }
