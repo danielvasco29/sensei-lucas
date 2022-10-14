@@ -26,7 +26,7 @@ class UpdateBookstoreService {
     
     const bookstoreRepository = new BookstoreRepository();
 
-    const nameAlreadyExists = await bookstoreRepository.findByID2({ id: bookstoreData });
+    const nameAlreadyExists = await bookstoreRepository.findByID2({ id: bookstoreId });
     console.log('bookstoreId', bookstoreId)
     console.log('nameAlreadyExists', nameAlreadyExists)
     if (!nameAlreadyExists) {
