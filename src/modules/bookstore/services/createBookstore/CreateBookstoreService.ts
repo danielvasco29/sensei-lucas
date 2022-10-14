@@ -12,7 +12,7 @@ class CreateBookstoreService {
   async execute({
     bookstoreData,
     id,
-  }: BookstoreDataDTO) {
+  }: BookstoreDataDTO): Promise<BookstoreEntity> {
     const usersRepository = new UsersRepository()
     const findAdmin = await usersRepository.findByID({ id })
     if(findAdmin.isAdmin === false) {

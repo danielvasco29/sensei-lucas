@@ -7,5 +7,8 @@ declare namespace Express {
     bookstore: {
       id: string;
     };
+    book: {
+      id: string;
+    };
   }
 }

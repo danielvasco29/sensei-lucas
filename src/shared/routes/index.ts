@@ -9,6 +9,7 @@ import { ReadAllUserController } from '../../modules/accounts/services/readAllUs
 import { ReadUserIdController } from '../../modules/accounts/services/readUser/ReadUserIdController';
 import { UpdateUserController } from '../../modules/accounts/services/updateUser/UpdateUserController';
 import { UpdatePasswordController } from '../../modules/accounts/services/updateUserPassword/UpdatePasswordController';
+import { CreateBookController } from '../../modules/book/createBook/CreateBookController';
 import { CreateBookstoreController } from '../../modules/bookstore/services/createBookstore/CreateBookstoreController';
 import { DeleteBookstoreController } from '../../modules/bookstore/services/deleteBookstore/DeleteBookstoreController';
 import { ReadBookstoreController } from '../../modules/bookstore/services/readBookstore/ReadBookstoreController';
@@ -30,12 +31,16 @@ const createBookstoreController = new CreateBookstoreController();
 const updateBookstoreController = new UpdateBookstoreController();
 const deleteBookstoreController = new DeleteBookstoreController();
 const readBookstoreController = new ReadBookstoreController();
+const createBookController = new CreateBookController();
 
+// sessions
 router.post('/sessions/login', userLoginController.control);
+router.delete('/sessions/logout', authSecurity, userLogoutController.control);
+
+// users
 router.post('/users/create', createUserController.control);
 router.put('/users/update', authSecurity, updateUserController.control);
 router.get('/users/read', readUserIdController.control);
-router.delete('/sessions/logout', authSecurity, userLogoutController.control);
 router.delete('/users/delete', authSecurity, deleteUserController.control);
 router.get('/users/all', authSecurity, readAllUserController.control);
 router.post(
@@ -44,6 +49,8 @@ router.post(
   updatePasswordController.control
 );
 router.put('/users/turnAdmin', authSecurity, turnAdminController.control);
+
+// bookstore
 router.post('/bookstore/create', authSecurity, createBookstoreController.control);
 router.post(
   '/bookstore/update',
@@ -55,6 +62,9 @@ router.delete(
   authSecurity,
   deleteBookstoreController.control
 );
-router.get('/bookstore/read', readBookstoreController.control)
+router.get('/bookstore/read', readBookstoreController.control);
+
+// book
+router.post('/book/create', authSecurity, createBookController.control);
 
 export { router };

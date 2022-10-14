@@ -1,4 +1,4 @@
-import { Book } from '@prisma/client'
+import { Book } from '@prisma/client';
 
 class BookEntity implements Book {
     readonly id: string;
