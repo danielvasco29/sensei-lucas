@@ -6,11 +6,11 @@ import { AppError } from "../../../../errors/AppError";
 
 type DeletebookstoreDTO = {
   id: string;
-  bookstoreData: string;
+  bookstoreId: string;
 };
 
 class DeleteBookstoreService {
-  async execute({ bookstoreData, id }: DeletebookstoreDTO): Promise<void> {
+  async execute({ bookstoreId, id }: DeletebookstoreDTO): Promise<void> {
     const usersRepository = new UsersRepository();
     const userAlreadExists = await usersRepository.findByID({ id });
     if (userAlreadExists.isAdmin === false) {
@@ -19,12 +19,12 @@ class DeleteBookstoreService {
 
     const bookstoreRepository = new BookstoreRepository();
 
-    const bookstoreExists = bookstoreRepository.findByID2({ bookstoreData });
+    const bookstoreExists = await bookstoreRepository.findByID2({ bookstoreId });
     if(!bookstoreExists) {
-      throw new AppError('Book dont exists', 404)
+      throw new AppError('Bookstore dont exists', 404)
     }
 
-    await bookstoreRepository.delete({ bookstoreData });
+    await bookstoreRepository.delete({ bookstoreId });
   }
 }
 

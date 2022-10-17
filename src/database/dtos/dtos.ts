@@ -5,6 +5,7 @@ type TurnIsAdminDTO = {
   id?: string;
   userData?: Partial<UserEntity>;
   isAdmin?: boolean;
+  userId?: string;
 };
 
 type UserLogoutDTO = {
@@ -44,7 +45,8 @@ type FindByNumberDTO = {
 };
 
 type FindByIdDTO = {
-  id: string;
+  userId?: string;
+  id?: string;
 };
 
 type UserLoginDTO = {
@@ -79,6 +81,7 @@ type DeleteTokenDTO = {
 
 type ReadAllUserDTO = {
   userId: string;
+  id: string;
 };
 
 export {

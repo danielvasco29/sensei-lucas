@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "../../../prisma/PrismaClient"
 import { BookEntity } from "../entities/BookEntity"
 
@@ -16,13 +17,21 @@ type FindByNameDTO = {
 }
 
 class BookRepository {
-    async create({bookData, bookstoreId}: CreateBookDTO) {
-        const createBook = await prisma.book.create({
-            data: {
-                ...bookData,
-                bookstoreId
+    async create({bookData, bookstoreId }: CreateBookDTO): Promise<BookEntity> {
+        const dataObject: Prisma.BookCreateInput = {
+            ...bookData,
+            Bookstore: {
+                create: {
+                    bookstoreId: bookstoreId
+                }
             }
+        }
+
+        if(!bookstoreId) delete dataObject.Bookstore;
+        const createBook = await prisma.book.create({
+            data: dataObject
         })
+
         return createBook;
     }
 

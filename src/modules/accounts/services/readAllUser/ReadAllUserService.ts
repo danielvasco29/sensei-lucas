@@ -4,10 +4,10 @@ import { UsersRepository } from '../../../../database/repositories/UsersReposito
 import { AppError } from '../../../../errors/AppError';
 
 class ReadAllUserService {
-  async execute({ userId }: ReadAllUserDTO): Promise<Partial<UserEntity>[]> {
+  async execute({ id }: ReadAllUserDTO): Promise<Partial<UserEntity>[]> {
     const usersRepository = new UsersRepository();
 
-    const { isAdmin } = await usersRepository.findByID({ id: userId });
+    const { isAdmin } = await usersRepository.findByID({ id });
 
     if (!isAdmin) {
       throw new AppError('User must be admin', 403);

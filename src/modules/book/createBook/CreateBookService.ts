@@ -5,21 +5,24 @@ import { AppError } from "../../../errors/AppError";
 
 type CreateBookDTO = {
     bookData: BookEntity;
-    id: string;
+    userId: string;
     bookstoreId: string;
 }
 
 class CreateBookService {
-    async execute({ bookData, id, bookstoreId }: CreateBookDTO): Promise<BookEntity> {
-        // faz uma compaaração do id passado
+    /* 
+    * 1- faz uma comparação do id passado
+    * 2- faz uma comparação do name passado no body, com o name salvo no banco
+    * 
+     */
+    async execute({ bookData, userId, bookstoreId }: CreateBookDTO): Promise<BookEntity> {
+
         const usersRepository = new UsersRepository();
-        const verifyUserId = await usersRepository.findByID({ id })
+        const verifyUserId = await usersRepository.findByID({ userId })
         if(verifyUserId.isAdmin === false) throw new AppError('User not is admin!', 404)
         
-        // faz uma comparação do name passado no body, com o name salvo no banco
         const bookRepository = new BookRepository();
         await bookRepository.findByName({ bookData })
-        // if(verifyBookNameExists) throw new AppError('Name already exists', 404)
 
         const createBook = await bookRepository.create({ bookData, bookstoreId });
 

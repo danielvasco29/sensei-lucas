@@ -8,7 +8,8 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(uuid())
+  id String @id @default(uuid())
+
   name       String
   email      String    @unique
   isAdmin    Boolean   @default(false)
@@ -23,35 +24,48 @@ model User {
 }
 
 model Tokens {
-  id         String   @id @default(uuid())
-  userId     String   @unique
+  id String @id @default(uuid())
+
   token      String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
 
   @@map("tokens")
 }
 
 model Bookstore {
-  id         String   @id @default(uuid())
+  id String @id @default(uuid())
+
   name       String
   adress     String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  Book       Book?
+  created_at DateTime         @default(now())
+  updated_at DateTime         @updatedAt
+  Book       BookstoreBooks[]
 
   @@map("bookstore")
 }
 
 model Book {
-  id          String    @id @default(uuid())
-  name        String
-  author      String
-  bookstoreId String    @unique
-  created_at  DateTime  @default(now())
-  updated_at  DateTime  @updatedAt
-  bookstore   Bookstore @relation(fields: [bookstoreId], references: [id], onDelete: Cascade)
+  id String @id @default(uuid())
+
+  name       String
+  author     String
+  created_at DateTime         @default(now())
+  updated_at DateTime         @updatedAt
+  Bookstore  BookstoreBooks[]
 
   @@map("book")
+}
+
+model BookstoreBooks {
+  Bookstore   Bookstore @relation(fields: [bookstoreId], references: [id], onDelete: Cascade)
+  bookstoreId String
+  Book        Book      @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  bookId      String
+
+  @@id([bookstoreId, bookId])
+  @@map("bookstore_books")
 }

@@ -1,5 +1,4 @@
 import { DeleteUserDTO } from '../../../../database/dtos/dtos';
-import { FindByAdminRepository } from '../../../../database/repositories/FindByAdminRepository';
 import { UsersRepository } from '../../../../database/repositories/UsersRepository';
 import { AppError } from '../../../../errors/AppError';
 
@@ -17,7 +16,6 @@ class DeleteUserService {
     }
 
     await usersRepository.delete({ id: actualId, userData });
-    // eslint-disable-next-line no-plusplus
     this.count++;
 
     convertUsersIdToArray.shift();

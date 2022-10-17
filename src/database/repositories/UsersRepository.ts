@@ -30,10 +30,10 @@ class UsersRepository {
     return userFound;
   }
 
-  async findByID({ id }: FindByIdDTO): Promise<Partial<UserEntity>> {
+  async findByID({ userId }: FindByIdDTO): Promise<Partial<UserEntity>> {
     const userFound = await prisma.user.findFirst({
       where: {
-        id,
+        id: userId,
       },
       select: {
         id: true,

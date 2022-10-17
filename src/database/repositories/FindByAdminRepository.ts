@@ -3,8 +3,9 @@ import { FindByAdminDTO } from '../dtos/dtos';
 import { UserEntity } from '../entities/UserEntity';
 
 type UpdateAdmin = {
-  id: string;
+  id?: string;
   userData?: Partial<UserEntity>;
+  userId?: string;
 };
 
 class FindByAdminRepository {
@@ -28,10 +29,10 @@ class FindByAdminRepository {
     return userFound;
   }
 
-  async update({ id, userData }: UpdateAdmin): Promise<UserEntity> {
+  async update({ id, userData, userId }: UpdateAdmin): Promise<UserEntity> {
     const updateBookstore = await prisma.user.update({
       where: {
-        id,
+        id: userId,
       },
       data: {
         isAdmin: userData.isAdmin,

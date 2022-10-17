@@ -2,12 +2,12 @@ import { prisma } from '../../../prisma/PrismaClient';
 import { BookstoreEntity } from '../entities/BookstoreEntity';
 
 type DeleteBookstoreDataDTO = {
-  bookstoreData: string;
+  bookstoreId: string;
 
 }
 
 type BookstoreDataDTO = {
-  bookstoreData?: string;
+  bookstoreId?: string;
   id?: string;
 };
 
@@ -69,10 +69,10 @@ class BookstoreRepository {
     return userFound;
   }
 
-  async findByID2({ bookstoreData }: BookstoreDataDTO): Promise<BookstoreEntity> {
+  async findByID2({ bookstoreId }: BookstoreDataDTO): Promise<BookstoreEntity> {
     const userFound = await prisma.bookstore.findFirst({
       where: {
-        id: bookstoreData,
+        id: bookstoreId,
       },   
     });
     return userFound;
@@ -134,10 +134,10 @@ class BookstoreRepository {
     return updateBookstore;
   }
 
-  async delete({ bookstoreData }: DeleteBookstoreDataDTO): Promise<void> {
+  async delete({ bookstoreId }: DeleteBookstoreDataDTO): Promise<void> {
     await prisma.bookstore.delete({
       where: {
-        id: bookstoreData,
+        id: bookstoreId,
       },
     });
   }
