@@ -9,7 +9,7 @@ import { ReadAllUserController } from '../../modules/accounts/services/readAllUs
 import { ReadUserIdController } from '../../modules/accounts/services/readUser/ReadUserIdController';
 import { UpdateUserController } from '../../modules/accounts/services/updateUser/UpdateUserController';
 import { UpdatePasswordController } from '../../modules/accounts/services/updateUserPassword/UpdatePasswordController';
-import { CreateBookController } from '../../modules/book/createBook/CreateBookController';
+import { CreateBookController } from '../../modules/book/useCases/createBook/CreateBookController';
 import { CreateBookstoreController } from '../../modules/bookstore/services/createBookstore/CreateBookstoreController';
 import { DeleteBookstoreController } from '../../modules/bookstore/services/deleteBookstore/DeleteBookstoreController';
 import { ReadBookstoreController } from '../../modules/bookstore/services/readBookstore/ReadBookstoreController';

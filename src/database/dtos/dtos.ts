@@ -80,7 +80,6 @@ type DeleteTokenDTO = {
 };
 
 type ReadAllUserDTO = {
-  userId: string;
   id: string;
 };
 

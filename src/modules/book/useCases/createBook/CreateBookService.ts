@@ -1,20 +1,14 @@
-import { BookEntity } from "../../../database/entities/BookEntity";
-import { BookRepository } from "../../../database/repositories/BookRepository";
-import { UsersRepository } from "../../../database/repositories/UsersRepository";
-import { AppError } from "../../../errors/AppError";
-
-type CreateBookDTO = {
-    bookData: BookEntity;
-    userId: string;
-    bookstoreId: string;
-}
+import { BookEntity } from "../../infra/entities/BookEntity";
+import { BookRepository } from "../../infra/repositories/BookRepository";
+import { UsersRepository } from "../../../../database/repositories/UsersRepository";
+import { AppError } from "../../../../errors/AppError";
+import { CreateBookDTO } from "../../@types/CreateBookDTO";
 
 class CreateBookService {
     /* 
-    * 1- faz uma comparação do id passado
-    * 2- faz uma comparação do name passado no body, com o name salvo no banco
-    * 
-     */
+        * 1- faz uma comparação do id passado
+        * 2- faz uma comparação do name passado no body, com o name salvo no banco
+    */
     async execute({ bookData, userId, bookstoreId }: CreateBookDTO): Promise<BookEntity> {
 
         const usersRepository = new UsersRepository();

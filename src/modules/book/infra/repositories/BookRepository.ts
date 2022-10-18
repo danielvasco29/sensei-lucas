@@ -1,20 +1,9 @@
 import { Prisma } from "@prisma/client";
-import { prisma } from "../../../prisma/PrismaClient"
+import { prisma } from "../../../../../prisma/PrismaClient"
+import { CreateBookDTO } from "../../@types/CreateBookDTO";
+import { FindByIdDTO } from "../../@types/FindByIdDTO";
+import { FindByNameDTO } from "../../@types/FindByNameDTO";
 import { BookEntity } from "../entities/BookEntity"
-
-type CreateBookDTO = {
-    bookData: BookEntity;
-    bookstoreId: string;
-}
-
-type FindByIdDTO = {
-    bookId: string;
-}
-
-type FindByNameDTO = {
-    bookData: BookEntity;
-    name?: string;
-}
 
 class BookRepository {
     async create({bookData, bookstoreId }: CreateBookDTO): Promise<BookEntity> {

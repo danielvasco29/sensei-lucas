@@ -3,10 +3,10 @@ import { CreateBookService } from "./CreateBookService";
 
 class CreateBookController {
     /* 
-    * 1 - recebe id do user logado
-    * 2 - recebe body do json passados na requisição insominia 
-    * 3 - recebe headers id passado pelo insominia
-    * 4 - executa parâmetros id, bookstoreId, e passa o conteúdo data atualizado
+        * 1 - recebe id do user logado
+        * 2 - recebe body do json passados na requisição insominia 
+        * 3 - recebe headers id passado pelo insominia
+        * 4 - executa parâmetros id, bookstoreId, e passa o conteúdo data atualizado
     */
     async control(req: Request, res: Response): Promise<Response> {
         const { id: userId } = req.user;

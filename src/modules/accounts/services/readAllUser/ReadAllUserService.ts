@@ -8,15 +8,10 @@ class ReadAllUserService {
     const usersRepository = new UsersRepository();
 
     const { isAdmin } = await usersRepository.findByID({ id });
-
-    if (!isAdmin) {
-      throw new AppError('User must be admin', 403);
-    }
+    if (!isAdmin) throw new AppError('User must be admin', 403);    
 
     const getAllUsers = await usersRepository.findAll();
-    if (getAllUsers.length < 1) {
-      throw new AppError('Users not found', 404);
-    }
+    if (getAllUsers.length < 0) throw new AppError('Users not found', 404);
 
     return getAllUsers;
   }

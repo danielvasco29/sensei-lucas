@@ -8,7 +8,7 @@ class ReadAllUserController {
 
     const readAllUserService = new ReadAllUserService();
 
-    const getAllUsers = await readAllUserService.execute({ userId: id });
+    const getAllUsers = await readAllUserService.execute({ id });
 
     return res.status(200).json(getAllUsers);
   }
