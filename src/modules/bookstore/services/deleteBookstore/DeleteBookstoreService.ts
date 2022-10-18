@@ -12,6 +12,7 @@ type DeletebookstoreDTO = {
 class DeleteBookstoreService {
   async execute({ bookstoreId, id }: DeletebookstoreDTO): Promise<void> {
     const usersRepository = new UsersRepository();
+    
     const userAlreadExists = await usersRepository.findByID({ id });
     if (userAlreadExists.isAdmin === false) {
       throw new AppError('User not is Admin', 404);

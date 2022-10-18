@@ -10,8 +10,8 @@ class CreateBookService {
         * 2- faz uma comparação do name passado no body, com o name salvo no banco
     */
     async execute({ bookData, userId, bookstoreId }: CreateBookDTO): Promise<BookEntity> {
-
         const usersRepository = new UsersRepository();
+
         const verifyUserId = await usersRepository.findByID({ userId })
         if(verifyUserId.isAdmin === false) throw new AppError('User not is admin!', 404)
         
@@ -20,9 +20,7 @@ class CreateBookService {
 
         const createBook = await bookRepository.create({ bookData, bookstoreId });
 
-        return createBook;
-
-        
+        return createBook;      
     }
 }
 

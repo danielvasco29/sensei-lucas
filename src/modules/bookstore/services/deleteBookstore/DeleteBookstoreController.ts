@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-
 import { DeleteBookstoreService } from './DeleteBookstoreService';
 
 class DeleteBookstoreController {

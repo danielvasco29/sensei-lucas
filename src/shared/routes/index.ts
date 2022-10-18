@@ -10,6 +10,7 @@ import { ReadUserIdController } from '../../modules/accounts/services/readUser/R
 import { UpdateUserController } from '../../modules/accounts/services/updateUser/UpdateUserController';
 import { UpdatePasswordController } from '../../modules/accounts/services/updateUserPassword/UpdatePasswordController';
 import { CreateBookController } from '../../modules/book/useCases/createBook/CreateBookController';
+import { DeleteBookController } from '../../modules/book/useCases/deleteBook/DeleteBookController';
 import { CreateBookstoreController } from '../../modules/bookstore/services/createBookstore/CreateBookstoreController';
 import { DeleteBookstoreController } from '../../modules/bookstore/services/deleteBookstore/DeleteBookstoreController';
 import { ReadBookstoreController } from '../../modules/bookstore/services/readBookstore/ReadBookstoreController';
@@ -32,6 +33,7 @@ const updateBookstoreController = new UpdateBookstoreController();
 const deleteBookstoreController = new DeleteBookstoreController();
 const readBookstoreController = new ReadBookstoreController();
 const createBookController = new CreateBookController();
+const deleteBookController = new DeleteBookController();
 
 // sessions
 router.post('/sessions/login', userLoginController.control);
@@ -66,5 +68,6 @@ router.get('/bookstore/read', readBookstoreController.control);
 
 // book
 router.post('/book/create', authSecurity, createBookController.control);
+router.delete('/book/delete', authSecurity, createBookController.control)
 
 export { router };

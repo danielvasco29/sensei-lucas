@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "../../../../../prisma/PrismaClient"
 import { CreateBookDTO } from "../../@types/CreateBookDTO";
+import { DeleteBookDTO } from "../../@types/DeleteBookDTO";
 import { FindByIdDTO } from "../../@types/FindByIdDTO";
 import { FindByNameDTO } from "../../@types/FindByNameDTO";
 import { BookEntity } from "../entities/BookEntity"
@@ -46,6 +47,14 @@ class BookRepository {
             }
         })
         return nameFound;
+    }
+
+    async deleteBookId({ bookId }: DeleteBookDTO): Promise<void> {
+        await prisma.book.delete({
+          where: {
+            id: bookId, 
+          }
+        })
     }
 }
 
