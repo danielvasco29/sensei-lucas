@@ -3,8 +3,6 @@ import { Router } from 'express';
 import { TurnAdminController } from '../../modules/accounts/services/adminUser/TurnAdminController';
 import { CreateUserController } from '../../modules/accounts/services/createUser/CreateUserController';
 import { DeleteUserController } from '../../modules/accounts/services/deleteUser/DeleteUserController';
-import { UserLoginController } from '../../modules/accounts/services/loginUser/UserLoginController';
-import { UserLogoutController } from '../../modules/accounts/services/logoutUser/UserLogoutController';
 import { ReadAllUserController } from '../../modules/accounts/services/readAllUser/ReadAllUserController';
 import { ReadUserIdController } from '../../modules/accounts/services/readUser/ReadUserIdController';
 import { UpdateUserController } from '../../modules/accounts/services/updateUser/UpdateUserController';
@@ -15,6 +13,8 @@ import { CreateBookstoreController } from '../../modules/bookstore/services/crea
 import { DeleteBookstoreController } from '../../modules/bookstore/services/deleteBookstore/DeleteBookstoreController';
 import { ReadBookstoreController } from '../../modules/bookstore/services/readBookstore/ReadBookstoreController';
 import { UpdateBookstoreController } from '../../modules/bookstore/services/updateBookstore/UpdateBookstoreController';
+import { UserLoginController } from '../../modules/sessions/useCases/loginUser/UserLoginController';
+import { UserLogoutController } from '../../modules/sessions/useCases/logoutUser/UserLogoutController';
 import { authSecurity } from '../middlewares/authSecurity';
 
 const router = Router();
@@ -68,6 +68,6 @@ router.get('/bookstore/read', readBookstoreController.control);
 
 // book
 router.post('/book/create', authSecurity, createBookController.control);
-router.delete('/book/delete', authSecurity, createBookController.control)
+router.delete('/book/delete', authSecurity, deleteBookController.control)
 
 export { router };

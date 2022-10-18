@@ -10,6 +10,7 @@ class DeleteUserService {
     const actualId = convertUsersIdToArray[0];
 
     const usersRepository = new UsersRepository();
+    
     const userAlreadExists = await usersRepository.findByID({ id });
     if (!userAlreadExists) {
       throw new AppError('User not found!', 404);

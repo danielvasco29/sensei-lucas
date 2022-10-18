@@ -53,9 +53,10 @@ model Book {
 
   name       String
   author     String
-  created_at DateTime         @default(now())
-  updated_at DateTime         @updatedAt
-  Bookstore  BookstoreBooks[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  Bookstore BookstoreBooks[]
 
   @@map("book")
 }
