@@ -10,6 +10,8 @@ class DeleteBookService {
     * 3- Verificar se o user é Admin.
     * 4- Verificar se o bookId é válido.
     * 5- Passar os dados para o controller.
+    * 6- Increment number
+    * 7- convertBookIdToArray.shift: Pega o array, e joga pra dentro do execute.
     */
    private count: number;
     async execute({ bookId, id }: DeleteBookDTO) {
@@ -32,7 +34,6 @@ class DeleteBookService {
         convertBookIdToArray.shift();
         if (convertBookIdToArray && convertBookIdToArray.length > 0) {
             const convertArrayToString = convertBookIdToArray.join(', ');
-            console.log('convertArrayToString', convertArrayToString)
 
             await this.execute({ bookId: convertArrayToString })
         }

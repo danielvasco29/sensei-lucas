@@ -16,7 +16,7 @@ class CreateBookService {
         if(verifyUserId.isAdmin === false) throw new AppError('User not is admin!', 404)
         
         const bookRepository = new BookRepository();
-        await bookRepository.findByName({ bookData })
+        const teste = await bookRepository.findByName({ bookData })
 
         const createBook = await bookRepository.create({ bookData, bookstoreId });
 
