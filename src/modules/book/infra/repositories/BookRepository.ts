@@ -90,7 +90,6 @@ class BookRepository {
             },
             id: queryBook,
         };
-        console.log('whereObject', whereObject)
     
         if (!queryBookstore) delete whereObject.Bookstore;
         if (!queryBook) delete whereObject.id;

@@ -82,10 +82,10 @@ model RentUserBook {
 
   rented_at DateTime @default(now())
 
-  User           User           @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  userId         String
-  BookstoreBooks BookstoreBooks @relation(fields: [bookstoreBooks], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  bookstoreBooks String
+  User             User           @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId           String
+  BookstoreBooks   BookstoreBooks @relation(fields: [bookstoreBooksId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  bookstoreBooksId String
 
   @@map("rent_user_book")
 }

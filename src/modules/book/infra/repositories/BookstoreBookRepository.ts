@@ -2,7 +2,7 @@ import { prisma } from "../../../../../prisma/PrismaClient";
 import { BookstoreBookEntity } from "../entities/BookstoreBookEntity";
 
 type BookstoreBookDTO = {
-    bookstoreBook: string;
+  bookstoreBooksId: string;
 }
 
 type CreateRelationDTO = {
@@ -17,11 +17,11 @@ type AlreadyRelationConflictDTO = {
 
 class BookstoreBookRepository {
     async findById({
-        bookstoreBook,
+      bookstoreBooksId,
     }: BookstoreBookDTO): Promise<BookstoreBookEntity> {
       const bookstoreBookFound = await prisma.bookstoreBooks.findFirst({
         where: {
-          id: bookstoreBook,
+          id: bookstoreBooksId,
         },
       });
   
@@ -54,10 +54,10 @@ class BookstoreBookRepository {
       return verifyConflict;
     }
   
-    async updateToRented({ bookstoreBook }: BookstoreBookDTO): Promise<void> {
+    async updateToRented({ bookstoreBooksId }: BookstoreBookDTO): Promise<void> {
       await prisma.bookstoreBooks.update({
         where: {
-          id: bookstoreBook,
+          id: bookstoreBooksId,
         },
         data: {
           rented: true,
@@ -66,11 +66,11 @@ class BookstoreBookRepository {
     }
   
     async updateToNotRented({
-      bookstoreBook,
+      bookstoreBooksId,
     }: BookstoreBookDTO): Promise<void> {
       await prisma.bookstoreBooks.update({
         where: {
-          id: bookstoreBook,
+          id: bookstoreBooksId,
         },
         data: {
           rented: false,
@@ -78,3 +78,5 @@ class BookstoreBookRepository {
       });
     }
   }
+
+  export { BookstoreBookRepository }

@@ -10,11 +10,11 @@ class ReadBookController {
     async control(req: Request, res: Response): Promise<Response> {
         const {
             bookId: queryBook,
-            bookstore: queryBookstore,
+            bookstoreId: queryBookstore,
             all,
           } = req.query as unknown as {
             bookId: string;
-            bookstore: string;
+            bookstoreId: string;
             all: string;
           };
 
