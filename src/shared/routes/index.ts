@@ -10,6 +10,7 @@ import { UpdatePasswordController } from '../../modules/accounts/services/update
 import { CreateBookController } from '../../modules/book/useCases/createBook/CreateBookController';
 import { DeleteBookController } from '../../modules/book/useCases/deleteBook/DeleteBookController';
 import { ReadBookController } from '../../modules/book/useCases/readBook/ReadBookController';
+import { RentBookController } from '../../modules/book/useCases/rentBook/RentBookController';
 import { UpdateBookBookstoreController } from '../../modules/book/useCases/updateBookBookstore/updateBookBookstoreController';
 import { CreateBookstoreController } from '../../modules/bookstore/services/createBookstore/CreateBookstoreController';
 import { DeleteBookstoreController } from '../../modules/bookstore/services/deleteBookstore/DeleteBookstoreController';
@@ -38,6 +39,7 @@ const createBookController = new CreateBookController();
 const deleteBookController = new DeleteBookController();
 const readBookController = new ReadBookController();
 const updateBookBookstoreController = new UpdateBookBookstoreController();
+const rentBookController = new RentBookController();
 
 // sessions
 router.post('/sessions/login', userLoginController.control);
@@ -75,5 +77,6 @@ router.post('/book/create', authSecurity, createBookController.control);
 router.delete('/book/delete', authSecurity, deleteBookController.control);
 router.get('/book/read', readBookController.control);
 router.post('/book/update', updateBookBookstoreController.control)
+router.post('/book/rent', authSecurity, rentBookController.control)
 
 export { router };

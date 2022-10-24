@@ -7,6 +7,8 @@ import { FindByNameDTO } from "../../@types/FindByNameDTO";
 import { FindManyDTO } from "../../@types/FindManyDTO";
 import { BookEntity } from "../entities/BookEntity"
 
+
+
 class BookRepository {
     async create({bookData, bookstoreId }: CreateBookDTO): Promise<BookEntity> {
         const dataObject: Prisma.BookCreateInput = {
@@ -99,7 +101,9 @@ class BookRepository {
         });
     
         return booksFound;
-      }
+      };
+
+     
 }
 
 export { BookRepository }

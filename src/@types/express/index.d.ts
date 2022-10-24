@@ -3,6 +3,7 @@ declare namespace Express {
     user: {
       id: string;
       isAdmin?: boolean;
+      userId: string;
     };
     bookstore: {
       id: string;

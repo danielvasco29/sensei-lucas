@@ -10,6 +10,10 @@ import {
 } from '../dtos/dtos';
 import { UserEntity } from '../entities/UserEntity';
 
+type ReadAllBooksDTO = {
+  userId: string;
+}
+
 class UsersRepository {
   async create({ userData }: CreateUserDTO) {
     const newUser = await prisma.user.create({
@@ -116,6 +120,19 @@ class UsersRepository {
     });
 
     return getAllUsers;
+  }
+
+  async readAllBooks({ userId }: ReadAllBooksDTO): Promise<number> {
+
+    const booksFound = await prisma.user.findMany({
+      where: {
+        id: userId,
+      },
+      include: { BookRented: true }
+    })
+    const result = booksFound.map((booksRented) => { return booksRented.BookRented })
+    
+    return result[0].length
   }
 }
 export { UsersRepository };
