@@ -1,4 +1,3 @@
-import { BookstoreRepository } from "../../../../database/repositories/BookstoreRepository";
 import { AppError } from "../../../../errors/AppError";
 import { ReadDTO } from "../../@types/ReadDTO";
 import { BookEntity } from "../../infra/entities/BookEntity";

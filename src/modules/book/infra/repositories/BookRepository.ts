@@ -83,13 +83,14 @@ class BookRepository {
         queryBook,
       }: FindManyDTO): Promise<BookEntity[]> {
         const whereObject: Prisma.BookWhereInput = {
-          Bookstore: {
-            some: {
-              bookstoreId: queryBookstore,
+            Bookstore: {
+                some: {
+                    bookstoreId: queryBookstore,
+                },
             },
-          },
-          id: queryBook,
+            id: queryBook,
         };
+        console.log('whereObject', whereObject)
     
         if (!queryBookstore) delete whereObject.Bookstore;
         if (!queryBook) delete whereObject.id;
