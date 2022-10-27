@@ -17,6 +17,15 @@ class RentBookRepository {
     });
     return rent;
   }
+
+  async verifyRentExists({ id: returnRent }) {
+    const find = await prisma.rentUserBook.findFirst({
+      where: {
+        id: returnRent 
+      }, 
+    })
+    return find;
+  }
 }
 
 export { RentBookRepository }

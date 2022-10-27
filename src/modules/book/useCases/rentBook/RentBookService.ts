@@ -5,6 +5,9 @@ import { BookstoreBookRepository } from "../../infra/repositories/BookstoreBookR
 import { RentBookRepository } from "../../infra/repositories/RentBookRepository";
 
 class RentBookService {
+    /* 
+    * updateToRented: Função atualizar a coluna rented do bookstoreBook para true, e não permitir alugar um mesmo livro.
+     */
     async execute({ bookstoreBooksId, userId}: RentDTO): Promise<void> {
         const userRepository = new UsersRepository();
         const bookstoreBookReposiroty = new BookstoreBookRepository();
