@@ -1,32 +1,34 @@
-import { RentUserBook } from "@prisma/client";
 import { prisma } from "../../../../../prisma/PrismaClient";
-import { RentDTO } from "../../@types/RentDTO";
 
+type RentDTO = {
+    userId: string;
+    bookstoreBooksId: string;
+  }
+  
 class RentBookRepository { 
     
-  async rent({
-    userId,
-    bookstoreBooksId,
-  }: RentDTO): Promise<RentUserBook> {
-    
-    const rent = await prisma.rentUserBook.create({
-      data: {
-        bookstoreBooksId,
-        userId
+    async rent({
+      bookstoreBooksId,
+      userId,
+      }: RentDTO): Promise<void> {
+        
+        await prisma.rentUserBook.create({
+          data: {
+            userId,
+            bookstoreBooksId,
+          },
+        });
       }
-    });
-    console.log('rent', rent)
-    return rent;
-  }
 
-  async verifyRentExists({ id: returnRent }) {
-    const find = await prisma.rentUserBook.findFirst({
-      where: {
-        id: returnRent 
-      }, 
-    })
-    return find;
-  }
-}
+      async verifyRentExists({ id: returnRent }) {
+        const find = await prisma.rentUserBook.findFirst({
+          where: {
+            id: returnRent 
+          }, 
+        })
+        return find;
+      }
+    }
+
 
 export { RentBookRepository }
