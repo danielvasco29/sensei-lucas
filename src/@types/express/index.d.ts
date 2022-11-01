@@ -8,6 +8,9 @@ declare namespace Express {
     bookstore: {
       id: string;
     };
+    bookstoreBook: {
+      rented: bollean;
+    };
     book: {
       id: string;
     };

@@ -18,16 +18,15 @@ class RentBookService {
         const bookstoreBookReposiroty = new BookstoreBookRepository();
         const rentBookRepository = new RentBookRepository();
 
-        // const rentedBooks = await userRepository.readAllBooks({ userId })
-        // if(rentedBooks >= 3) throw new AppError('Maximum books rented', 400);
+        const rentedBooks = await userRepository.readAllBooks({ userId })
+        if(rentedBooks >= 3) throw new AppError('Maximum books rented', 400);
         
-        const rented = await bookstoreBookReposiroty.findById({ bookstoreBooksId })
-        if(!rented) throw new AppError('Book not exists!', 409);
-        console.log('rented', rented)
+        const bookRented = await bookstoreBookReposiroty.findById({ bookstoreBooksId })
+        if(bookRented.rented) throw new AppError('Book already rented!', 409);
 
-        await rentBookRepository.rent({ userId, bookstoreBooksId })
+        const createRent = await rentBookRepository.rent({ userId, bookstoreBooksId })
 
-        await bookstoreBookReposiroty.updateToRented({ bookstoreBooksId })
+        const rentedFake = await bookstoreBookReposiroty.updateToRented({ bookstoreBooksId })
     }
 }
 

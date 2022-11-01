@@ -1,3 +1,4 @@
+import { BookstoreBooks } from "@prisma/client";
 import { prisma } from "../../../../../prisma/PrismaClient";
 import { BookstoreBookEntity } from "../entities/BookstoreBookEntity";
 
@@ -55,7 +56,7 @@ class BookstoreBookRepository {
       return verifyConflict;
     }
   
-    async updateToRented({ bookstoreBooksId }: BookstoreBookDTO): Promise<void> {
+    async updateToRented({ bookstoreBooksId }: BookstoreBookDTO): Promise<BookstoreBooks> {
       await prisma.bookstoreBooks.update({
         where: {
           id: bookstoreBooksId,
@@ -64,6 +65,7 @@ class BookstoreBookRepository {
           rented: true,
         },
       });
+      return;
     }
   
     async updateToNotRented({

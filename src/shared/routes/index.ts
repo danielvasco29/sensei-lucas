@@ -79,7 +79,7 @@ router.post('/book/create', authSecurity, createBookController.control);
 router.delete('/book/delete', authSecurity, deleteBookController.control);
 router.get('/book/read', readBookController.control);
 router.post('/book/update', updateBookBookstoreController.control)
-router.post('/book/rent', authSecurity, rentBookController.control)
+router.post('/book/rent', rentBookController.control)
 router.post('/book/return', returnRentController.control)
 
 export { router };

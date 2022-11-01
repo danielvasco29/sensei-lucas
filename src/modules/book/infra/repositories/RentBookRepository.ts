@@ -1,4 +1,5 @@
 import { prisma } from "../../../../../prisma/PrismaClient";
+import { RentBookEntity } from "../entities/RentBookEntity";
 
 type RentDTO = {
     userId: string;
@@ -10,14 +11,15 @@ class RentBookRepository {
     async rent({
       bookstoreBooksId,
       userId,
-      }: RentDTO): Promise<void> {
+      }: RentDTO): Promise<RentBookEntity> {
         
-        await prisma.rentUserBook.create({
+        const createRent = await prisma.rentUserBook.create({
           data: {
             userId,
             bookstoreBooksId,
           },
         });
+        return createRent;
       }
 
       async verifyRentExists({ id: returnRent }) {
