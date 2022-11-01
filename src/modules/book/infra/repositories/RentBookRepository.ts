@@ -15,6 +15,7 @@ class RentBookRepository {
         userId
       }
     });
+    console.log('rent', rent)
     return rent;
   }
 
