@@ -4,6 +4,7 @@ import { RentBookEntity } from "../entities/RentBookEntity";
 type RentDTO = {
     userId: string;
     bookstoreBooksId: string;
+    historyRentId: string;
   }
 
 type DeleteDTO = {
@@ -15,12 +16,14 @@ class RentBookRepository {
     async rent({
       bookstoreBooksId,
       userId,
+      historyRentId
       }: RentDTO): Promise<RentBookEntity> {
         
         const createRent = await prisma.rentUserBook.create({
           data: {
             userId,
-            bookstoreBooksId,
+            bookstoreBooksId, 
+            historyId: historyRentId
           },
         });
         return createRent;

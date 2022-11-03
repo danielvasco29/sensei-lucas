@@ -1,4 +1,5 @@
 import { AppError } from "../../../../errors/AppError";
+import { HistoryRentRepository } from "../../../audit/infra/repositories/HistoryRentRepository";
 import { BookRepository } from "../../infra/repositories/BookRepository";
 import { BookstoreBookRepository } from "../../infra/repositories/BookstoreBookRepository";
 import { RentBookRepository } from "../../infra/repositories/RentBookRepository";
@@ -7,6 +8,7 @@ class ReturnRentService {
     async execute({ returnRent, userId }) {
         const rentBookRepository = new RentBookRepository();
         const bookstoreBookRepository = new BookstoreBookRepository();
+        const historyRentRepository = new HistoryRentRepository();
 
         const verifyRent = await rentBookRepository.verifyRentExists({ id: returnRent })
         if(verifyRent.userId != userId) throw new AppError('You arent the user who rent this book!')
@@ -32,6 +34,9 @@ class ReturnRentService {
         const coefficientHours = minutes / 60;
 
         const total = (coefficientHours * hourValue).toFixed(2);
+
+        const rentUserBookstoreBook = await rentBookRepository.verifyRentExists({ id: returnRent })
+        await historyRentRepository.Update({ id: rentUserBookstoreBook.historyId, endDate: now, totalValue: total })
 
         await bookstoreBookRepository.updateToNotRented({ bookstoreBooksId: verifyRent.bookstoreBooksId })
 

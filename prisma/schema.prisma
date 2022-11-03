@@ -86,6 +86,20 @@ model RentUserBook {
   userId           String
   BookstoreBooks   BookstoreBooks @relation(fields: [bookstoreBooksId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   bookstoreBooksId String
+  historyId        String
 
   @@map("rent_user_book")
+}
+
+model HistoryRent {
+  id String @id @default(uuid())
+
+  bookstoreId String
+  bookId      String
+  userId      String
+  startDate   DateTime
+  endDate     DateTime?
+  totalValue  String?
+
+  @@map("history_rent")
 }
