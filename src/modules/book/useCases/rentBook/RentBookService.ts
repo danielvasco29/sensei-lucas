@@ -22,11 +22,11 @@ class RentBookService {
         if(rentedBooks >= 3) throw new AppError('Maximum books rented', 400);
         
         const bookRented = await bookstoreBookReposiroty.findById({ bookstoreBooksId })
-        if(bookRented.rented) throw new AppError('Book already rented!', 409);
+        if(bookRented.rented === true) throw new AppError('Book already rented!', 409);
 
-        const createRent = await rentBookRepository.rent({ userId, bookstoreBooksId })
+        await rentBookRepository.rent({ userId, bookstoreBooksId })
 
-        const rentedFake = await bookstoreBookReposiroty.updateToRented({ bookstoreBooksId })
+        await bookstoreBookReposiroty.updateToRented({ bookstoreBooksId })
     }
 }
 

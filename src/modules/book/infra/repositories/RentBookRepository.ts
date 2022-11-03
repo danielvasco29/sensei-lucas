@@ -5,6 +5,10 @@ type RentDTO = {
     userId: string;
     bookstoreBooksId: string;
   }
+
+type DeleteDTO = {
+  returnRent: string;
+}
   
 class RentBookRepository { 
     
@@ -29,6 +33,14 @@ class RentBookRepository {
           }, 
         })
         return find;
+      }
+
+      async delete({ returnRent }: DeleteDTO): Promise<void> {
+        await prisma.rentUserBook.delete({
+          where: {
+            id: returnRent
+          }
+        })
       }
     }
 
