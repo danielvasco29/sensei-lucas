@@ -9,7 +9,7 @@ class ReturnRentController {
 
         const returnRentService = new ReturnRentService();
 
-        const returnBook = await returnRentService.execute({ userId, returnRent: rentBookUserId })
+        const returnBook = await returnRentService.execute({ userId, returnRent: rentBookUserId });
 
         return res.status(200).json(returnBook);
     }

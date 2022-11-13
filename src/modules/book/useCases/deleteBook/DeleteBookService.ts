@@ -13,20 +13,20 @@ class DeleteBookService {
     * 6- Increment number
     * 7- convertBookIdToArray.shift: Pega o array, e joga pra dentro do execute.
     */
-   private count: number;
+    private count: number;
     async execute({ bookId, id }: DeleteBookDTO) {
         const convertBookIdToArray = bookId.split(', ');
         const actualId = convertBookIdToArray[0];
 
         const usersRepository = new UsersRepository();
-        
+
         const foundAdmin = await usersRepository.findByID({ id });
-        if(foundAdmin.isAdmin === false) throw new AppError('User is not admin', 404);
+        if (foundAdmin.isAdmin === false) throw new AppError('User is not admin', 404);
 
         const bookRepository = new BookRepository();
 
         const verifyBookId = await bookRepository.findById({ bookId: actualId })
-        if(!verifyBookId) throw new AppError('Book Id Not Found', 404)
+        if (!verifyBookId) throw new AppError('Book Id Not Found', 404)
 
         await bookRepository.deleteBookId({ bookId: actualId, id });
         this.count++;

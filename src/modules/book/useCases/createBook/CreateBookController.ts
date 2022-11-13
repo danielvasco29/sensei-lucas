@@ -12,7 +12,7 @@ class CreateBookController {
         const { id: userId } = req.user;
 
         const bookData = req.body;
-
+        
         const bookstoreId = req.headers['x-book-id'] as string;
 
         const createBookService = new CreateBookService();

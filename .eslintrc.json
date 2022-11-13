@@ -1,87 +1,84 @@
-
 {
-    "env": {
-        "es2020": true,
-        "node": true,
-		"jest": true
-    },
-    "extends": [
-        "airbnb-base",
-        "plugin:@typescript-eslint/recommended",
-        "prettier",
-		"plugin:prettier/recommended",
-		"eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-		"eslint-plugin-import-helpers",
-		"prettier",
-        "@typescript-eslint"
-    ],
-    "rules": {
-		"@typescript-eslint/no-unused-vars": "off",
-		"no-unused-vars": "off",
-		"no-param-reassign": 0,
-		"prettier/prettier": [
-			"warn", 
-			{
-			  "singleQuote": true,
-			  "endOfLine": "auto"
-			}
-		  ],
-      "camelcase": "off",
-			"import/no-unresolved": "never",
-			"@typescript-eslint/naming-convention": [
-			  "warn",
-			  {
-			    "selector": "interface",
-			    "format": ["PascalCase"],
-			    "custom": {
-			      "regex": "^I[A-Z]",
-			      "match": true
-			    }
-			  }
-			],
-			
-		
-			"class-methods-use-this": "off",
-			"import/prefer-default-export": "off",
-			"no-shadow": "off",
-			"no-console": "off",
-			"no-useless-constructor": "off",
-			"no-empty-function": "off",
-			"lines-between-class-members": "off",
-			"import/extensions": [
-			  "warn",
-			  "ignorePackages",
-			  {
-			    "ts": "never"
-			  }
-			],
-			"import-helpers/order-imports": [
-			  "warn",
-			  {
-			    "newlinesBetween": "always",
-			    "groups": ["module", "/^@shared/", ["parent", "sibling", "index"]],
-			    "alphabetize": { "order": "asc", "ignoreCase": true }
-			  }
-			],
-			"import/no-extraneous-dependencies": [
-			  "warn",
-			  { "devDependencies": ["**/*.spec.js"] }
-			]
-    },
-    "settings": {
-        "import/resolver": {
-            "typescript": {}
-        }
-    }
-	
-}
+  "env": {
+    "es2020": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["eslint-plugin-import-helpers", "prettier", "@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
 
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": "off",
+    "no-param-reassign": 0,
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "endOfLine": "auto"
+      }
+    ],
+    "camelcase": "warn",
+    "import/no-unresolved": "never",
+    "class-methods-use-this": "off",
+    "import/prefer-default-export": "off",
+    "no-shadow": "off",
+    "no-console": "off",
+    "no-useless-constructor": "off",
+    "no-empty-function": "off",
+    "lines-between-class-members": "off",
+    "import/extensions": [
+      "warn",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": ["module", "/^@shared/", ["parent", "sibling", "index"]],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "warn",
+      {
+        "devDependencies": ["**/*.spec.js"]
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
