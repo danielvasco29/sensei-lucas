@@ -1,42 +1,50 @@
 # Cadastro de Usuário
 
-**RF**
+**RF** <br>
+Deve ser possível cadastrar um novo usuário. <br>
+Deve ser possível listar todas os usuários.  <br>
+Deve ser possível alterar um dado do usuário.  <br>
+Deve ser possível deletar um usuário.  <br>
 
-# Deve ser possível cadastrar um novo usuário.
-# Deve ser possível listar todas os usuários.
-# Deve ser possível alterar um dado do usuário.
-# Deve ser possível deletar um usuário.
-
-**RN**
-Não deve ser possível cadastrar um usuário com celular ou e-mail já existentes.
-Não deve ser possível alterar dados do usuário se não admin.
+**RN** <br>
+Não deve ser possível cadastrar um usuário com celular ou e-mail já existentes.  <br>
+Não deve ser possível alterar dados do usuário se não admin.  <br>
 
 # Cadastro de Livraria
 
-**RF**
-Deve ser possível cadastrar uma nova livraria.
-Deve ser possível listar todas os livrarias.
-Deve ser possível alterar os dados de uma livraria.
-Deve ser possível deletar uma livraria.
+**RF** <br>
+Deve ser possível cadastrar uma nova livraria.  <br>
+Deve ser possível listar todas os livrarias.  <br>
+Deve ser possível alterar os dados de uma livraria.  <br>
+Deve ser possível deletar uma livraria.  <br>
 
-**RN**
-Não deve ser possível cadastrar uma livraria se não for admin.
-Não deve ser possível cadastrar uma livraria já existente.
-Uma livraria pode conter vários livros.
+**RN** <br>
+Não deve ser possível cadastrar uma livraria se não for admin.  <br>
+Não deve ser possível cadastrar uma livraria já existente.  <br>
+Uma livraria pode conter vários livros.  <br>
 
 # Cadastro de livros
 
-**RF**
-Deve ser possível cadastrar um livro.
+**RF** <br>
+Deve ser possível cadastrar um livro. <br>
 
-**RN**
-Um livro pode estar em várias livrarias.
+**RN** <br>
+Um livro pode estar em várias livrarias.  <br>
+
+# Sessão
+
+**RF** <br>
+Deve ser possível logar um usuário. <br>
+Deve ser possível fazer logoff em um usuário. <br>
+
+**RN** <br>
+Um livro pode estar em várias livrarias.  <br>
 
 # Audit
 
-**RF**
-Todas as operações serão salvas no módulo Audit.
+**RF** <br>
+Todas as operações serão salvas no módulo Audit. <br>
 
-**RN**
-Todas as operações serão salvas no módulo Audit.
+**RN** <br>
+Todas as operações serão salvas no módulo Audit. <br>
 
