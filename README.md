@@ -1,10 +1,11 @@
 # Cadastro de Usuário
 
 **RF**
-Deve ser possível cadastrar um novo usuário.
-Deve ser possível listar todas os usuários.
-Deve ser possível alterar um dado do usuário.
-Deve ser possível deletar um usuário.
+
+# Deve ser possível cadastrar um novo usuário.
+# Deve ser possível listar todas os usuários.
+# Deve ser possível alterar um dado do usuário.
+# Deve ser possível deletar um usuário.
 
 **RN**
 Não deve ser possível cadastrar um usuário com celular ou e-mail já existentes.
