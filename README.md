@@ -3,12 +3,19 @@
 **RF** <br>
 Deve ser possível cadastrar um novo usuário. <br>
 Deve ser possível listar todas os usuários.  <br>
-Deve ser possível alterar um dado do usuário.  <br>
+Deve ser possível alterar dados do usuário.  <br>
 Deve ser possível deletar um usuário.  <br>
 
 **RN** <br>
 Não deve ser possível cadastrar um usuário com celular ou e-mail já existentes.  <br>
-Não deve ser possível alterar dados do usuário se não admin.  <br>
+Não deve ser possível alterar a senha na rota de update.  <br>
+Somente admin, pode dar Update em um User.  <br>
+
+# Sessão
+
+**RF** <br>
+Deve ser possível logar um usuário. <br>
+Deve ser possível fazer logoff de um usuário. <br>
 
 # Cadastro de Livraria
 
@@ -27,24 +34,16 @@ Uma livraria pode conter vários livros.  <br>
 
 **RF** <br>
 Deve ser possível cadastrar um livro. <br>
+Deve ser possível alugar um livro. <br>
+Deve ser possível devolver um livro alugado, retornando o valor hora a ser pago. <br>
+Deve ser possível buscar livros por livraria.
 
 **RN** <br>
-Um livro pode estar em várias livrarias.  <br>
-
-# Sessão
-
-**RF** <br>
-Deve ser possível logar um usuário. <br>
-Deve ser possível fazer logoff em um usuário. <br>
-
-**RN** <br>
-Um livro pode estar em várias livrarias.  <br>
+Apenas admins podem fazer operações CUD.
+Um livro pode pertencer à muitas livrarias.  <br>
 
 # Audit
 
 **RF** <br>
-Todas as operações serão salvas no módulo Audit. <br>
-
-**RN** <br>
-Todas as operações serão salvas no módulo Audit. <br>
+Todas as operações de aluguel de livros, serão salvas no módulo Audit. <br>
 
