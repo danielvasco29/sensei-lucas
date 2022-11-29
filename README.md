@@ -2,9 +2,11 @@
 
 **RF** <br>
 Deve ser possível cadastrar um novo usuário. <br>
+Deve ser possível listar um único usuário.  <br>
 Deve ser possível listar todas os usuários.  <br>
 Deve ser possível alterar dados do usuário.  <br>
 Deve ser possível deletar um usuário.  <br>
+Deve ser possível deletar vários usuário.  <br>
 
 **RN** <br>
 Não deve ser possível cadastrar um usuário com celular ou e-mail já existentes.  <br>
